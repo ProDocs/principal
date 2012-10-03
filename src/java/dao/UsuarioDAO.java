@@ -158,4 +158,14 @@ public class UsuarioDAO implements Dao {
     public void update(Object object) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    
+    public void desbloquearUsuario(Object object) throws SQLException {
+        Usuario user = (Usuario) object;
+        String sql = "update usuario set bloqueado = 0  where idUsuario=?";
+        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+        stm.setInt(1, user.getIdUsuario());
+        stm.executeUpdate();
+        System.out.println("Usuario Desbloqueado");
+    }
 }
