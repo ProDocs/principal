@@ -17,13 +17,13 @@
         <div class="box-creation-options bordering shadows">
             <div class="action-opt">
                 <ul>
-                    <li class="btn-blue"><a href="search.html">Pesquisar</a></li>
+                    <li class="btn-blue"><a href="busca.jsp">Pesquisar</a></li>
                     <li class="btn-blue">
                     	Criar
                     	<ul class="bordering shadows">
                         	<li><a href="criar-template.html">Templates</a></li>
                             <li><a href="#">Trechos</a></li>
-                            <li><a href="novo-documento.html">Documentos</a></li>
+                            <li><a href="novo_documento.jsp">Documentos</a></li>
                             <li class="last"><a href="#">Minhas Tarefas</a></li>
                         </ul>
                     </li>
