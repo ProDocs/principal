@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package dao;
-
+import model.Modelo;
 import java.sql.SQLException;
 
 /**
