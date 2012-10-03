@@ -5,6 +5,7 @@ Author: Eli Santana
 Author URL: http://www.facebook.com.br/eli.neto
 */
 /* Reset */
+.editor{padding-left: 15%;}
 ul, ol, fieldset, legend, input, th, td { padding:0;}
 body, p, ul, ol, form, fieldset, input, select, textarea, h1, h2, h3, h4, h5, h6, blockquote, pre, dl, dd { margin:0;}
 ul, ol { list-style:none;}
