@@ -6,28 +6,39 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-<!doctype html>
-<html>
-    <head>
-        <title> :: ProDocs :: </title>
-       <!-- <link REL="stylesheet" HREF="css.css" TYPE="text/css">-->
-    </head>
-    <body>
-        <div class="geral">
                 <!-- Area do Topo -->
-                <%@include file="header.jsp"%>
+<%@include file="header.jsp"%>
                 <!-- Rodape-->
-                <%@include file="editor.jsp"%>
-                <!-- Rodape-->
-                <%@include file="footer.jsp"%>
-                
+<div class="wrapper">
+    <div class="container-login shadows bordering">
+        <div class="box-creation bordering">
+        	
         </div>
-    </body>
-
-</html>
-
-
-
-
-
+        <div class="box-creation-options bordering shadows">
+            <div class="action-opt">
+                <ul>
+                    <li class="btn-blue"><a href="busca.jsp">Pesquisar</a></li>
+                    <li class="btn-blue">
+                    	Criar
+                    	<ul class="bordering shadows">
+                        	<li><a href="criar-template.html">Templates</a></li>
+                            <li><a href="#">Trechos</a></li>
+                            <li><a href="novo_documento.jsp">Documentos</a></li>
+                            <li class="last"><a href="#">Minhas Tarefas</a></li>
+                        </ul>
+                    </li>
+                    <li class="btn-blue">
+                    	Aprovar
+                    	<ul class="bordering shadows">
+                        	<li><a href="#">Novos documentos</a></li>
+                            <li><a href="#">Novos trechos</a></li>
+                            <li class="last"><a href="#">Novos usuários</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+		</div>
+    </div>
+</div>
+                <!-- Rodape-->
+<%@include file="footer.jsp"%>

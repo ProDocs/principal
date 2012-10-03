@@ -4,53 +4,7 @@
 <title>Full featured example</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- TinyMCE -->
-<script language="JavaScript" type="text/javascript" src="./jQuery Examples from SKFox.com_files/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="./jQuery Examples from SKFox.com_files/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../jscripts/tiny_mce/tiny_mce.js"></script>
-<script language="JavaScript" type="text/javascript">
-        $(document).ready( function() 
-        {
-            $('#ClickWordList li').click(function() { 
-                $("#txtMessage").insertAtCaret($(this).text());
-                return false
-            });
-            $("#DragWordList li").draggable({helper: 'clone'});
-            $(".txtDropTarget").droppable({
-                accept: "#DragWordList li",
-                drop: function(ev, ui) {
-                    $(this).insertAtCaret(ui.draggable.text());
-					jQuery('#txtMessage').next('.mceEditor').find('.mceIframeContainer').droppable();
-                }
-            });
-        });
-
-        $.fn.insertAtCaret = function (myValue) {
-            return this.each(function(){
-                //IE support
-                if (document.selection) {
-                    this.focus();
-                    sel = document.selection.createRange();
-                    sel.text = myValue;
-                    this.focus();
-                }
-                //MOZILLA / NETSCAPE support
-                else if (this.selectionStart || this.selectionStart == '0') {
-                    var startPos = this.selectionStart;
-                    var endPos = this.selectionEnd;
-                    var scrollTop = this.scrollTop;
-                    this.value = this.value.substring(0, startPos)+ myValue+ this.value.substring(endPos,this.value.length);
-                    this.focus();
-                    this.selectionStart = startPos + myValue.length;
-                    this.selectionEnd = startPos + myValue.length;
-                    this.scrollTop = scrollTop;
-                } else {
-                    this.value += myValue;
-                    this.focus();
-                }
-            });
-        };
-		
-    </script>
 <script type="text/javascript">
 	tinyMCE.init({
 		// General options
@@ -136,52 +90,8 @@
 		<input type="submit" name="save" value="Submit" />
 		<input type="reset" name="reset" value="Reset" />
 		
-		<textarea name="txtMessage" id="txtMessage" class="txtDropTarget ui-droppable" cols="80" rows="15"></textarea>
-			
-		<p>
-			<input type="submit" value="Submit" />
-		</p>
-	</form>
-	</td>
-	<td style="align:top">
-	<div id="teste"></div>
-	<div id="leftcolumn">
-    <fieldset>
-    <legend>Click to insert:</legend>
-    <ul id="ClickWordList">
-      <li>Hello world!</li>
-      <li>All your base</li>
-      <li>Lorem ipsum dolor sit amet...</li>
-    </ul>
-    </fieldset>
-    <fieldset>
-    <legend>Drag to insert:</legend>
-    <ul id="DragWordList">
-      <li class="ui-draggable">Hello world!</li>
-      <li class="ui-draggable">All your base</li>
-      <li class="ui-draggable"><div>Lorem ipsum dolor sit amet...</br>adsfasdfadsfasdfaf	</div></li>
-    </ul>
-    </fieldset>
-  </div>
-  </td>
-  </tr>
-  </table>
-  <button type="button" onclick="displayDate()">Display Date</button>
-	<div id="footer">
-		<hr />
-		<p id="copy">
-			Copyright &copy; 2003-2012, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
-			Knabben. All rights reserved.
-		</p>
-	</div>
-		
-	</div>
-</form>
 
-<script type="text/javascript">
-if (document.location.protocol == 'file:') {
-	alert("The examples might not work properly on the local file system due to security settings in your browser. Please use a real webserver.");
-}
-</script>
+	</form>
+	
 </body>
 </html>
