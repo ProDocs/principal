@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
                 <!-- Area do Topo -->
-                <%@include file="header.jsp"%>
+<%@include file="header.jsp"%>
                 <!-- Rodape-->
 <div class="wrapper">
     <div class="container-login shadows bordering">
@@ -41,4 +41,4 @@
     </div>
 </div>
                 <!-- Rodape-->
-                <%@include file="footer.jsp"%>
+<%@include file="footer.jsp"%>
