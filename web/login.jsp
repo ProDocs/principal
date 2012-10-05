@@ -10,19 +10,19 @@
 <div class="wrapper">
     <div class="container-login shadows bordering">
         <div class="box-left-login shadows bordering">
-            <img src="images/imagem-front.jpg" alt=""/>
+            <img src="View/images/imagem-front.jpg" alt=""/>
         </div>
         <div class="box-enter-login bordering">
             <div class="form-login">
-                <form>
+                <form action="userLogin" method="post">
                     <table>
                         <tr>
                             <td><label>Nome de usuário</label></td>
-                            <td class="text"><input type="text"/></td>
+                            <td class="text"><input type="text" name="loginUser" id="loginUser"/></td>
                         </tr>
                         <tr>
                             <td><label>Senha</label></td>
-                            <td class="text"><input type="password"/></td>
+                            <td class="text"><input type="password" name="passwordUser" id="passwordUser"/></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -30,7 +30,7 @@
                                 <!--<input type="button" value="Entrar"/>
                                 <input type="button" value="Esqueci minha senha"/>
                                 <input type="button" value="Registrar"/>-->
-                                <a class="btn-blue">Entrar</a>
+                                <a class="btn-blue" type="submit" name="logar" >Entrar</a>
                                 <a class="btn-blue">Esqueci minha senha</a>
                                 <a class="btn-blue">Registrar</a>
                             </td>
