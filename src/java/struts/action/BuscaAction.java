@@ -22,29 +22,29 @@ public class BuscaAction extends ActionSupport {
      HttpServletRequest request = ServletActionContext.getRequest();
      Map<String, Object> session = ActionContext.getContext().getSession();
      
-     private Documento_Trecho trecho = new Documento_Trecho();
-     private List<Documento_Trecho> lista;
+     private Artefato artefato = new Artefato();
+     private List<Artefato> lista;
 
-    public List<Documento_Trecho> getLista() {
+    public List<Artefato> getLista() {
         return lista;
     }
 
-    public void setLista(List<Documento_Trecho> lista) {
+    public void setLista(List<Artefato> lista) {
         this.lista = lista;
     }
 
-    public Documento_Trecho getTrecho() {
-        return trecho;
+    public Artefato getTrecho() {
+        return artefato;
     }
 
-    public void setMusica(Documento_Trecho trecho) {
-        this.trecho = trecho;
+    public void setMusica(Artefato artefato) {
+        this.artefato = artefato;
     }
     
     public String BuscaTrechos() {
         try {
             String user;
-            Documento_TrechoDAO dao = new Documento_TrechoDAO();
+            ArtefatoDAO dao = new ArtefatoDAO();
             Login logado = (Login)session.get("login");
             user = (String) logado.getLogin();
             
