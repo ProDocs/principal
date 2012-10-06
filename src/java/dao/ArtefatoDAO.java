@@ -41,8 +41,7 @@ public class ArtefatoDAO  implements Dao{
         int i = 0;
         String loga = logado;
         ResultSet rs;
-        String sql = "SELECT musicas.nomeMusica, artista, album, ano, valor, genero from musicas "
-             +   "JOIN carrinho on musicas.nomeMusica = carrinho.nomeMusica where carrinho.login =?";
+        String sql = "SELECT * FROM ARTEFATO";
 
 
         PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
@@ -56,8 +55,19 @@ public class ArtefatoDAO  implements Dao{
 
 	while (rs.next()) {
 		Artefato tmp = new Artefato();
-		tmp.setAprovado(rs.getBoolean("nomeMusica"));
-		//tmp.setIdTrecho(rs.getInt("artista"));
+		tmp.setAprovado(rs.getBoolean("aprovado"));
+                tmp.setBloqueado(rs.getBoolean("bloqueado"));     
+                tmp.setConteudo(rs.getString("conteudo"));
+                tmp.setData_aprovacao(rs.getString("data_aprovacao"));
+                tmp.setData_criacao(rs.getString("data_criacao"));
+                tmp.setIdAprovador(rs.getInt("idAprovador"));
+                tmp.setIdArtefato(rs.getInt("idArtefato"));
+                tmp.setIdAutor(rs.getInt("idAutor"));
+                tmp.setIdCategoria(rs.getInt("idCategoria"));
+                tmp.setTags(rs.getString("tags"));
+                tmp.setTipo(rs.getInt("tipo"));
+                tmp.setTitulo(rs.getString("titulo"));
+                tmp.setVersao(rs.getFloat("versao"));
 		
 		lista.add(tmp);
         }
