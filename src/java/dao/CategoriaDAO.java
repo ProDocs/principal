@@ -69,7 +69,20 @@ public class CategoriaDAO implements Dao{
     @Override
     public void update(Object object) throws SQLException
     {
-        
+              	Categoria a = (Categoria)object;
+
+                String sql="UPDATE CATEGORIA SET idGrupo=?, nome=?, descricao=?"
+                        + " where idCategoria=?";
+
+                PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+
+                stm.setInt(1, a.getIdGrupo());
+                stm.setString(2, a.getNome());
+                stm.setString(3, a.getDescricao());
+                
+                stm.setInt(14, a.getIdCategoria());
+
+                stm.executeUpdate();  
     }
 
     /* exclusao no BD */
@@ -78,7 +91,7 @@ public class CategoriaDAO implements Dao{
     {
         Categoria a = (Categoria)object;
 
-        String sql = "DELETE FROM categoria WHERE idCategoria=?";
+        String sql = "DELETE FROM CATEGORIA WHERE idCategoria=?";
         PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
 
         stm.setInt(1, a.getIdCategoria());
