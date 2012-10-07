@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package dao;
+import java.sql.PreparedStatement;
 import model.Categoria;
 import java.sql.SQLException;
 
@@ -22,6 +23,19 @@ public class CategoriaDAO implements Dao{
     @Override
     public void create(Object object) throws SQLException
     {
+        Categoria categoria = (Categoria) object;
+        String sql = "INSERT INTO CATEGORIA (nome,id,descricao) " +
+                "values(?,?,?)";        
+        
+        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+
+        stm.setString(1, categoria.getNome());
+        stm.setInt(2, categoria.getIdGrupo());
+        stm.setString(3, categoria.getDescricao());
+
+        System.out.println(sql);
+        stm.executeUpdate();
+        System.out.println("Inserção ok!");
     
     }
 
