@@ -21,9 +21,9 @@
                     <li class="btn-blue">
                     	Criar
                     	<ul class="bordering shadows">
-                        	<li><a href="criar-template.html">Templates</a></li>
-                            <li><a href="#">Trechos</a></li>
-                            <li><a href="novo_documento.jsp">Documentos</a></li>
+                        	<li><a href="criar_template.jsp">Templates</a></li>
+                            <li><a href="criar_trecho.jsp">Trechos</a></li>
+                            <li><a href="criar_documento.jsp">Documentos</a></li>
                             <li class="last"><a href="#">Minhas Tarefas</a></li>
                         </ul>
                     </li>
