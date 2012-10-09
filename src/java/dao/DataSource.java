@@ -1,6 +1,5 @@
 
 package dao;
-import java.sql.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,8 +19,8 @@ public class DataSource {
 
         url = "jdbc:mysql://localhost:3306/";
         username = "root";
-        password = "123456";
-        database = "db_comercio";
+        password = "root";
+        database = "prodocs_db";
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             connection = DriverManager.getConnection(url + database, username, password);

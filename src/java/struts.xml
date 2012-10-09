@@ -18,7 +18,16 @@
         <global-results>
             <result name="naoLogado">/login.jsp</result>
         </global-results>
+        
+  
+        <action name="userLogin" class="struts.action.LoginAction">
+            <result name="input">/login.jsp</result>
+            <result name="success">/respLoginUser.jsp</result>
+            <result name="userAdmin">/homeAdmin.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
 
+    <!--  
         <action name="testaRestrito" class="struts.action.restrito">
             <interceptor-ref name="autorizarAcesso"></interceptor-ref>
             <result name="success">/restrict.jsp</result>
@@ -37,12 +46,7 @@
             <result name="error">/admin/cadProd.jsp</result>
         </action>
          
-        <action name="userLogin" class="struts.action.LoginAction">
-            <result name="input">/login.jsp</result>
-            <result name="success">/respLoginUser.jsp</result>
-            <result name="userAdmin">/homeAdmin.jsp</result>
-            <result name="error">/login.jsp</result>
-        </action>
+  
         
         <action name="UserEditAction" class="struts.action.UserEditAction">
             <interceptor-ref name="seguranca" />
@@ -119,7 +123,6 @@
         <action name="filtraCategoriaAction" class="struts.action.filtraCategoriaAction">
             <result>/index2.jsp</result>
         </action>
-        
-
+        -->
     </package>
 </struts>

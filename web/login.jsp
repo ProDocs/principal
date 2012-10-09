@@ -4,7 +4,9 @@
     Author     : ASUS
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="s" uri="/struts-tags" %>
 <%@include file="header.jsp"%>
 
 <div class="wrapper">
@@ -18,11 +20,11 @@
                     <table>
                         <tr>
                             <td><label>Nome de usuário</label></td>
-                            <td class="text"><input type="text" name="userLogin.login" id="loginUser"/></td>
+                            <td class="text"><input type="text" name="userLogin.login" id="userLogin.login"/></td>
                         </tr>
                         <tr>
                             <td><label>Senha</label></td>
-                            <td class="text"><input type="password" name="userLogin.senha" id="passwordUser"/></td>
+                            <td class="text"><input type="password" name="userLogin.senha" id="userLogin.senha"/></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -30,7 +32,7 @@
                                 <!--<input type="button" value="Entrar"/>
                                 <input type="button" value="Esqueci minha senha"/>
                                 <input type="button" value="Registrar"/>-->
-                                <a class="btn-blue" type="submit" name="logar" >Entrar</a>
+                                <a class="btn-blue" type="submit" name="fullName" value="f"  >Entrar</a>
                                 <a class="btn-blue">Esqueci minha senha</a>
                                 <a class="btn-blue">Registrar</a>
                             </td>
