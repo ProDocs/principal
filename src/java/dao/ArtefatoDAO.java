@@ -157,6 +157,43 @@ public class ArtefatoDAO  implements Dao{
 		return lista;
     }
     
+      public List<Artefato> buscaTrecho(String conteudo) throws SQLException{
+        String nome = conteudo;
+        ResultSet rs;
+        String sql = "SELECT * FROM ARTEFATO WHERE conteudo LIKE ? OR "+
+                     "AND tipo = 2 " +
+                     "AND aprovado = 1 ";
+
+        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+
+        stm.setString(1, "%" + nome + "%");
+
+        System.out.println(stm.toString());
+
+        rs = stm.executeQuery();
+	LinkedList<Artefato> lista = new LinkedList<Artefato>();
+
+	while (rs.next()) {
+		Artefato tmp = new Artefato();
+		tmp.setAprovado(rs.getBoolean("aprovado"));
+                tmp.setBloqueado(rs.getBoolean("bloqueado"));     
+                tmp.setConteudo(rs.getString("conteudo"));
+                tmp.setData_aprovacao(rs.getString("data_aprovacao"));
+                tmp.setData_criacao(rs.getString("data_criacao"));
+                tmp.setIdAprovador(rs.getInt("idAprovador"));
+                tmp.setIdArtefato(rs.getInt("idArtefato"));
+                tmp.setIdAutor(rs.getInt("idAutor"));
+                tmp.setIdCategoria(rs.getInt("idCategoria"));
+                tmp.setTags(rs.getString("tags"));
+                tmp.setTipo(rs.getInt("tipo"));
+                tmp.setTitulo(rs.getString("titulo"));
+                tmp.setVersao(rs.getFloat("versao"));
+		
+		lista.add(tmp);
+        }
+		return lista;
+    }
+    
     /* atualizaao no BD */
     @Override
     public void update(Object object) throws SQLException

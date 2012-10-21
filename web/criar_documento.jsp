@@ -4,15 +4,34 @@
     Author     : discover
 --%>
 
-<%@include file="header.jsp" %>
 <table style="width: 100%">
-<tr>
-    <td style="width: 75%">
-        <%@include file="editor.jsp"%>
-    </td>
-    <td style="height: 100%;">
-        <%@include file="busca_trecho.jsp" %>
-    </td> 
-</tr>
+    <tr style="height: 50px">
+        <td colspan="2">
+            <%@include file="header.jsp" %>
+        </td>
+    </tr>
+    <tr style="height: 100%">
+        <td style="width: 70%">
+           <%@include file="editor.jsp"%>
+        </td>
+        <td style="width: 30%;height: 450px">
+            <%@include file="busca_trecho.jsp"%>   
+        </td>
+    </tr>
+    <tr style="height: 40px">
+        <td colspan="2">
+            <%@include file="footer.jsp" %>
+        </td>
+    </tr>
+    
 </table>
-<%@include file="footer.jsp" %>
+
+
+
+
+
+
+
+
+
+

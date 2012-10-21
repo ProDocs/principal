@@ -4,37 +4,36 @@
     Author     : ASUS
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp"%>
 
+
+<%@include file="header_login.jsp"%>
 <div class="wrapper">
     <div class="container-login shadows bordering">
         <div class="box-left-login shadows bordering">
-            <img src="images/imagem-front.jpg" alt=""/>
+            <img src="View/images/imagem-front.jpg" alt=""/>
         </div>
         <div class="box-enter-login bordering">
             <div class="form-login">
-                <form>
+                
+                <form action="userLogin" method="post" name="login">
                     <table>
                         <tr>
-                            <td><label>Nome de usuÃ¡rio</label></td>
-                            <td class="text"><input type="text"/></td>
+                            <td><label>Nome de usuário</label></td>
+                            <td class="text"><input type="text" name="userLogin.login" id="userLogin.login"/></td>
                         </tr>
                         <tr>
                             <td><label>Senha</label></td>
-                            <td class="text"><input type="password"/></td>
+                            <td class="text"><input type="password" name="userLogin.senha" id="userLogin.senha"/></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text">
-                                <!--<input type="button" value="Entrar"/>
-                                <input type="button" value="Esqueci minha senha"/>
-                                <input type="button" value="Registrar"/>-->
-                                <a class="btn-blue">Entrar</a>
+                            <td class="">
+                                <a class="btn-blue" name="fullName" onclick="document.login.submit();">Entrar</a>
                                 <a class="btn-blue">Esqueci minha senha</a>
                                 <a class="btn-blue">Registrar</a>
                             </td>
                         </tr>
+                        
                     </table>                   
                 </form>
             </div>
