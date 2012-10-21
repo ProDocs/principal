@@ -45,7 +45,7 @@ public class BuscaAction extends ActionSupport {
         try {
             String user;
             ArtefatoDAO dao = new ArtefatoDAO();
-            Login logado = (Login)session.get("login");
+            Login logado = (Login)session.get("USER_LOGADO");
             user = (String) logado.getLogin();
             
             if(logado != null){

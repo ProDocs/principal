@@ -5,7 +5,7 @@
 package struts.action;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ActionSupport;   
 import dao.UsuarioDAO;
 import java.util.Map;
 import model.Usuario;
@@ -16,6 +16,8 @@ import model.Usuario;
  */
 public class LoginAction extends ActionSupport {
 
+    public static final String USER_LOGADO = "USER_LOGADO";
+    
     Map<String, Object> session = ActionContext.getContext().getSession();
     private Usuario userLogin;
 
@@ -37,7 +39,8 @@ public class LoginAction extends ActionSupport {
 
 
         if (userValido != null) {
-            ActionContext.getContext().getSession().put("SESSION_USER", userValido);
+            ActionContext.getContext().getSession().put(USER_LOGADO, userValido);
+            
             if (userValido.getEmail() == null) {
                 return SUCCESS;
             } else {

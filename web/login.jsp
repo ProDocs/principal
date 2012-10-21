@@ -5,10 +5,8 @@
 --%>
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib  prefix="s" uri="/struts-tags" %>
-<%@include file="header.jsp"%>
 
+<%@include file="header_login.jsp"%>
 <div class="wrapper">
     <div class="container-login shadows bordering">
         <div class="box-left-login shadows bordering">
@@ -16,10 +14,11 @@
         </div>
         <div class="box-enter-login bordering">
             <div class="form-login">
-                <form action="userLogin" method="post">
+                
+                <form action="userLogin" method="post" name="login">
                     <table>
                         <tr>
-                            <td><label>Nome de usuÃ¡rio</label></td>
+                            <td><label>Nome de usuário</label></td>
                             <td class="text"><input type="text" name="userLogin.login" id="userLogin.login"/></td>
                         </tr>
                         <tr>
@@ -28,15 +27,13 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text">
-                                <!--<input type="button" value="Entrar"/>
-                                <input type="button" value="Esqueci minha senha"/>
-                                <input type="button" value="Registrar"/>-->
-                                <a class="btn-blue" type="submit" name="fullName" value="f"  >Entrar</a>
+                            <td class="">
+                                <a class="btn-blue" name="fullName" onclick="document.login.submit();">Entrar</a>
                                 <a class="btn-blue">Esqueci minha senha</a>
                                 <a class="btn-blue">Registrar</a>
                             </td>
                         </tr>
+                        
                     </table>                   
                 </form>
             </div>

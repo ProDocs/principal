@@ -38,6 +38,7 @@ public class UsuarioDAO implements Dao {
         System.out.println("Insersao de usuario ok!");
     }
 
+    @Override
     public void delete(Object object) throws SQLException {
 
         Usuario user = (Usuario) object;
@@ -49,6 +50,7 @@ public class UsuarioDAO implements Dao {
 
     }
 
+    @Override
     public Object read(Object key) throws SQLException {
 
         int cod_user = (Integer) key;
@@ -76,9 +78,6 @@ public class UsuarioDAO implements Dao {
     public Usuario readUserLoginPassWord(Object object) throws SQLException {
         Usuario userObject = (Usuario)object;
 
-        
-
-        
         String sql = "select * from usuario where login=? and senha=?";
         PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
         System.out.println("Consultou 0");

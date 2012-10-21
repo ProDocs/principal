@@ -13,8 +13,9 @@
 		// General options
 		mode : "textareas",
 		theme : "advanced",
+                skin : "o2k7",
 		plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave,visualblocks",
-                height : "500",
+                height : "520",
                 
 
 		// Theme options
@@ -56,11 +57,10 @@
 	});
 </script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<div>
+
     <form method="post" action="http://tinymce.moxiecode.com/dump.php?example=true" style="height: 100%">
         <!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
-        <div style="height: 100%; " >
-                <textarea id="elm1" name="elm1" style="height: 100%; width: 100%;"></textarea>
-        </div>
+        
+            <textarea id="elm1" name="elm1" style="width: 100%;height: 100%"></textarea>
+        
     </form>
-</div>

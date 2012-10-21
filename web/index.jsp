@@ -11,13 +11,14 @@
                 <!-- Rodape-->
 <div class="wrapper">
     <div class="container-login shadows bordering">
-        <div class="box-creation bordering">
+       <!-- <div class="box-creation bordering">
         	
-        </div>
+        </div>-->
+        
         <div class="box-creation-options bordering shadows">
             <div class="action-opt">
                 <ul>
-                    <li class="btn-blue"><a href="busca.jsp">Pesquisar</a></li>
+                    <li class="btn-blue"><a href="<s:url action="paginaBusca"/>">Pesquisar</a></li>
                     <li class="btn-blue">
                     	Criar
                     	<ul class="bordering shadows">
@@ -30,9 +31,9 @@
                     <li class="btn-blue">
                     	Aprovar
                     	<ul class="bordering shadows">
-                        	<li><a href="#">Novos documentos</a></li>
-                            <li><a href="#">Novos trechos</a></li>
-                            <li class="last"><a href="#">Novos usuários</a></li>
+                        	<li><a href="lista_aprov_doc.jsp">Novos documentos</a></li>
+                            <li><a href="lista_aprov_tre.jsp">Novos trechos</a></li>
+                            <li class="last"><a href="lista_usr.jsp">Novos usuários</a></li>
                         </ul>
                     </li>
                 </ul>

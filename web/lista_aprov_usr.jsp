@@ -6,8 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
-
+<%  Usuario userLogado = new Usuario();
+    userLogado.setNome("Usuario");
+        userLogado = (Usuario)ActionContext.getContext().getSession().get("SESSION_USER");%>
+        
+        
 <div class="wrapper">
+    <%out.println(userLogado.getNome());%>
         <div class="scroll">
             <div class="box-main-list" id="accordion">
             	<h3><a href="#">Hoje</a></h3>
