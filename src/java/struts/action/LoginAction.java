@@ -5,7 +5,7 @@
 package struts.action;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ActionSupport;   
 import dao.UsuarioDAO;
 import java.util.Map;
 import model.Usuario;
@@ -16,6 +16,8 @@ import model.Usuario;
  */
 public class LoginAction extends ActionSupport {
 
+    public static final String USER_LOGADO = "USER_LOGADO";
+    
     Map<String, Object> session = ActionContext.getContext().getSession();
     private Usuario userLogin;
 
@@ -27,7 +29,7 @@ public class LoginAction extends ActionSupport {
         this.userLogin = userLogin;
     }
 
-  /*  @Override
+    @Override
     public String execute() throws Exception {
 
         //session.clear();
@@ -37,8 +39,9 @@ public class LoginAction extends ActionSupport {
 
 
         if (userValido != null) {
-            ActionContext.getContext().getSession().put("SESSION_USER", userValido);
-            if (userValido.getTipo_user() == 1) {
+            ActionContext.getContext().getSession().put(USER_LOGADO, userValido);
+            
+            if (userValido.getEmail() == null) {
                 return SUCCESS;
             } else {
                 return "userAdmin";
@@ -49,8 +52,9 @@ public class LoginAction extends ActionSupport {
             super.addFieldError("userLogin.login", "Login/Senha inválido");
             return ERROR;
         }
-    }*/
+    }
 
+    @Override
     public void validate() {
         if (getUserLogin().getLogin() == null || getUserLogin().getLogin().isEmpty()) {
             super.addFieldError("userLogin.login", "O login deve ser informado!");

@@ -23,14 +23,14 @@
 
 
 <!-- HEADER -->
-<body>
 <div class="header">
     <div class="info">
-        <h2>Seja bem-vindo,&nbsp;<b>${userLogin.login}</b> </h2>
+        <h2>Seja bem-vindo!</h2>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="logout" href="login.jsp">Logout</a>
-     
+
     </div>
 </div>
+<body>
 
 
 

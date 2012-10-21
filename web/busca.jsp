@@ -23,7 +23,7 @@
                         <div class="action-buttons">
                             <a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                            <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p2">
@@ -32,7 +32,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p3">
@@ -41,7 +41,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                            <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p4">
@@ -50,7 +50,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                            <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                    	<li id="p5">
@@ -59,7 +59,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p6">
@@ -68,7 +68,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p7">
@@ -77,7 +77,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                            <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                     <li id="p8">
@@ -86,7 +86,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                          <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
 					<li id="p9">
@@ -95,7 +95,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
 					<li id="p10">
@@ -104,7 +104,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
 					<li id="p11">
@@ -113,7 +113,7 @@
                          <div class="action-buttons">
                         	<a href="javascript:;" class="btn-blue showpreview">Visualizar</a>
                             <a href="#" class="btn-blue">Criar nova versão</a>
-                            <a href="#" class="btn-blue">Compartilhar</a>
+                           <!--<a href="#" class="btn-blue">Compartilhar</a>-->
                         </div>
                     </li>
                 </ul>
