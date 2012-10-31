@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Categoria {
+public class Categoria implements Serializable{
     private String descricao;
     private int idCategoria;
     private int idGrupo;

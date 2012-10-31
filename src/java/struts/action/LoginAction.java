@@ -6,23 +6,58 @@ package struts.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;   
+import dao.GrupoDAO;
 import dao.UsuarioDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import model.Grupo;
 import model.Usuario;
+import model.dto.FiltroGruposUsuarioDTO;
+import tipo.TipoSessionObjects;
 
 /**
  *
  * @author Pablo
  */
 public class LoginAction extends ActionSupport {
-
-    public static final String USER_LOGADO = "USER_LOGADO";
     
-    Map<String, Object> session = ActionContext.getContext().getSession();
-    private Usuario userLogin;
+    public TipoSessionObjects objSession;
 
+    Map<String, Object> session = ActionContext.getContext().getSession();
+
+    private Usuario userLogin;//recebe o usuário do request
+    private Usuario userLogado;//usuario guardado na sessão
+    private String selectedGroup;//grupo definido na sessão
+    private List<Grupo> gruposUsuario = new ArrayList<Grupo>();//grupos do usuario guardados na sessao
+
+    public String getSelectedGroup() {
+        return selectedGroup;
+    }
+
+    public void setSelectedGroup(String selectedGroup) {
+        this.selectedGroup = selectedGroup;
+    }
+    
+    public List<Grupo> getGruposUsuario() {
+        return gruposUsuario;
+    }
+
+    public void setGruposUsuario(List<Grupo> gruposUsuario) {
+        this.gruposUsuario = gruposUsuario;
+    }
+    
     public Usuario getUserLogin() {
         return userLogin;
+    }
+
+    public Usuario getUserLogado() {
+        return userLogado;
+    }
+
+    public void setUserLogado(Usuario userLogado) {
+        this.userLogado = userLogado;
     }
 
     public void setUserLogin(Usuario userLogin) {
@@ -31,21 +66,41 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-
-        //session.clear();
-
+        
         Usuario userValido;
         userValido = validaLogin();
 
-
         if (userValido != null) {
-            ActionContext.getContext().getSession().put(USER_LOGADO, userValido);
+            //Guarda o usuario na sessão
+            ActionContext.getContext().getSession().put(objSession.USER_LOGADO.getDescricao(), userValido);
             
-            if (userValido.getEmail() == null) {
+            //Carrega dados do usuário para utilizar na view
+            userLogado = (Usuario) ActionContext.getContext().getSession().get(objSession.USER_LOGADO.getDescricao());
+                   
+            FiltroGruposUsuarioDTO filtro = new FiltroGruposUsuarioDTO();
+            filtro.setIdUsuario(userLogado.getIdUsuario());
+            
+            //Carrega grupos do usuario que serão listados na combo
+            gruposUsuario = obterGruposUsuario(filtro);
+            
+            //Guarda grupos do usuario na sessão
+            ActionContext.getContext().getSession().put(objSession.USER_GROUPS.getDescricao(), gruposUsuario);
+            
+            System.out.println("Grupo Default "+ gruposUsuario.get(0).getNome());
+            
+            //Guarda grupo selecionado na sessão
+            selectedGroup = gruposUsuario.get(0).getNome();
+            
+            ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), selectedGroup);
+            
+            return SUCCESS;
+            
+            //TODO implementação de validação do perfil para sysadmin
+            /*if (userValido.getEmail() == null) {
                 return SUCCESS;
             } else {
                 return "userAdmin";
-            }
+            }*/
             
         } else {
             System.out.println("invalido");
@@ -66,21 +121,37 @@ public class LoginAction extends ActionSupport {
 
     public Usuario validaLogin() {
         try {
-            System.out.println(userLogin.getLogin());
-            System.out.println(userLogin.getSenha());
+                System.out.println(userLogin.getLogin());
+                System.out.println(userLogin.getSenha());
+                System.out.println("Validando Usuario");
 
-            System.out.println("Validando Usuario");
-            Usuario userTemp;
-            UsuarioDAO userDao = new UsuarioDAO();
-            userTemp = userDao.readUserLoginPassWord(userLogin);
-            if (userTemp == null) {
+                Usuario userTemp;
+                UsuarioDAO userDao = new UsuarioDAO();
+                userTemp = userDao.readUserLoginPassWord(userLogin);
+                if (userTemp == null) {
+                    return null;
+                } else {
+                    return userTemp;
+                }
+            } 
+        catch (Exception e) {
+                e.printStackTrace();
                 return null;
-            } else {
-                return userTemp;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+    }
+    
+    public List<Grupo> obterGruposUsuario(FiltroGruposUsuarioDTO filtro) throws Exception{
+
+        System.out.println("Listando usuários do Grupo");
+        try{
+            GrupoDAO grupoDao = new GrupoDAO();
+            List<Grupo>gruposTMP = new ArrayList<Grupo>();
+
+            gruposTMP = grupoDao.listarGrupos(filtro);
+            return gruposTMP;
+           }
+        catch(SQLException e){
+            throw new RuntimeException(e);
         }
     }
 }

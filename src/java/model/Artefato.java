@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Artefato {
+public class Artefato implements Serializable{
     private boolean aprovado;
     private boolean bloqueado;
     private String conteudo;

@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Documento_Trecho {
+public class Documento_Trecho implements Serializable{
     private int idDocumento;
     private int idTrecho;
 

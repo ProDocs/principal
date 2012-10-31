@@ -14,8 +14,8 @@
         <td style="width: 70%">
            <%@include file="editor.jsp"%>
         </td>
-        <td style="width: 30%;height: 450px">
-            <%@include file="busca_trecho.jsp"%>   
+        <td style="width: 30%;height: 450px">          
+            <%@include file="busca_trecho.jsp"%>
         </td>
     </tr>
     <tr style="height: 40px">

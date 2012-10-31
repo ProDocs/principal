@@ -11,27 +11,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="View/css/style.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<script type="text/javascript" src="View/script/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="View/script/jquery-ui-1.8.22.custom.min.js"></script>
-<script type="text/javascript" src="View/script/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="View/script/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="View/script/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="View/script/functions.js"></script>
+<script type="text/javascript" src="script/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="script/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="script/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="script/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="script/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="script/functions.js"></script>
 
 
 <!-- HEADER -->
 <body>
 <div class="header">
     <div class="info">
-        <h2>Seja bem-vindo,&nbsp;<b>${userLogin.login}</b> </h2>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="logout" href="login.jsp">Logout</a>
-     
+        &nbsp;
+        <b>Grupo :</b>
+      
+     <select size="1" name="comboGrupos">
+       <s:iterator value="gruposUsuario" status="stat" >
+           <s:if test="nome.equals(selectedGroup)">
+               <option selected value="<s:property value="gruposUsuario[#stat.index].idGrupo"/>">${nome}</option>
+           </s:if>
+           <s:else>
+               <option value="<s:property value="gruposUsuario[#stat.index].idGrupo"/>">${nome}</option>
+           </s:else>
+       </s:iterator>
+     </select>
+        
+     <h2>Seja bem-vindo, <b>${userLogado.nome}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h2> 
+     <a class="user" href="#">User</a>
+     <a title="asdfasdf" class="home" href="index">Home</a>
+     <a class="logout" href="userLogout">Logout</a>&nbsp;&nbsp;
     </div>
 </div>
-
 
 
 

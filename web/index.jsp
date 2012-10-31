@@ -6,9 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-                <!-- Area do Topo -->
+<!-- Area do Topo -->
 <%@include file="header.jsp"%>
-                <!-- Rodape-->
+
+<input type="hidden"  id="grupo" value="<s:property value="selectedGroup"/>" >
+
 <div class="wrapper">
     <div class="container-login shadows bordering">
        <!-- <div class="box-creation bordering">
@@ -18,13 +20,13 @@
         <div class="box-creation-options bordering shadows">
             <div class="action-opt">
                 <ul>
-                    <li class="btn-blue"><a href="<s:url action="paginaBusca"/>">Pesquisar</a></li>
+                    <li class="btn-blue"><a href="busca">Pesquisar</a></li>
                     <li class="btn-blue">
                     	Criar
                     	<ul class="bordering shadows">
-                        	<li><a href="criar_template.jsp">Templates</a></li>
-                            <li><a href="criar_trecho.jsp">Trechos</a></li>
-                            <li><a href="criar_documento.jsp">Documentos</a></li>
+                        	<li><a href="modelo">Modelos</a></li>
+                            <li><a href="trecho">Trechos</a></li>
+                            <li><a href="documento">Documentos</a></li>
                             <li class="last"><a href="#">Minhas Tarefas</a></li>
                         </ul>
                     </li>
@@ -41,5 +43,5 @@
 		</div>
     </div>
 </div>
-                <!-- Rodape-->
+<!-- Rodape-->
 <%@include file="footer.jsp"%>

@@ -6,11 +6,11 @@
 
 
 
-<%@include file="header_login.jsp"%>
+<%@include file="header_limpo.jsp"%>
 <div class="wrapper">
     <div class="container-login shadows bordering">
         <div class="box-left-login shadows bordering">
-            <img src="View/images/imagem-front.jpg" alt=""/>
+            <img src="images/imagem-front.jpg" alt=""/>
         </div>
         <div class="box-enter-login bordering">
             <div class="form-login">
@@ -30,7 +30,7 @@
                             <td class="">
                                 <a class="btn-blue" name="fullName" onclick="document.login.submit();">Entrar</a>
                                 <a class="btn-blue">Esqueci minha senha</a>
-                                <a class="btn-blue">Registrar</a>
+                                <a class="btn-blue" href="cadastro.jsp">Registrar</a>
                             </td>
                         </tr>
                         
