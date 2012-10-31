@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Modelo {
+public class Modelo implements Serializable{
     private boolean aprovado;
     private boolean bloqueado;
     private int idCategoria;

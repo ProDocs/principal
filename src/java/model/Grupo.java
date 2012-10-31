@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Grupo {
+public class Grupo implements Serializable{
     private String descricao;
     private int idGrupo;
     private String nome;

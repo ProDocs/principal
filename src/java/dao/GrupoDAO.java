@@ -5,9 +5,11 @@
 package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import model.Grupo;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Grupo;
+import model.dto.FiltroGruposUsuarioDTO;
 
 /**
  *
@@ -91,6 +93,39 @@ public class GrupoDAO implements Dao{
         stm.setInt(1, group.getIdGrupo());
         stm.executeUpdate();
         System.out.println("Grupo Excluido");
+    }
+    
+    public List<Grupo> listarGrupos(FiltroGruposUsuarioDTO idUsuario) throws SQLException{
+    
+        List<Grupo> grupos = new ArrayList<Grupo>();
+        
+        try{
+            ResultSet rs;
+            String sql;
+            sql = ("Select distinct g.idGrupo, g.nome, g.descricao "+
+                            "from grupo g, grupo_usuario gu, usuario u "+ 
+                            "where g.idGrupo = gu.idGrupo and gu.idUsuario = ?");
+
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setInt(1, idUsuario.getIdUsuario());
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+            Grupo grupo = new Grupo();
+
+            grupo.setDescricao(rs.getString("descricao"));
+            grupo.setIdGrupo(rs.getInt("idGrupo"));
+            grupo.setNome(rs.getString("nome"));
+
+            grupos.add(grupo);
+ 
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("retornou " + grupos.size() + " grupos");
+        return grupos;
     }
     
 }
