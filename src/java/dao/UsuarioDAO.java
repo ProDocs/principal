@@ -93,11 +93,11 @@ public class UsuarioDAO implements Dao {
             System.out.println("Encontrou usuario");
             Usuario user = new Usuario();
             user.setIdUsuario(rs.getInt(1));
-            user.setLogin(rs.getString(2));
-            user.setSenha(rs.getString(3));
-            user.setNome(rs.getString(4));
-            user.setEmail(rs.getString(5));
-            user.setSobrenome(rs.getString(6));
+            user.setNome(rs.getString(2));
+            user.setSobrenome(rs.getString(3));
+            user.setEmail(rs.getString(4));
+            user.setLogin(rs.getString(5));
+            user.setSenha(rs.getString(6));
             user.setBloqueado(rs.getBoolean(7));
            
             return user;

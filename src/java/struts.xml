@@ -23,14 +23,49 @@
         <action name="userLogin" class="struts.action.LoginAction">
             <result name="input">/login.jsp</result>
             <result name="success">/index.jsp</result>
+            <result name="userLeitor">/index.jsp</result>
             <result name="userAdmin">/index.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         
-        <action name="paginaBusca" class="struts.action.paginaBuscaAction">
-            <result name="success">/busca.jsp</result>
-        </action>
 
+        
+         <action name="userLogout" class="struts.action.LogoutAction">
+            <result name="success">/login.jsp</result>
+         </action> 
+         
+         <action name="pesquisar" class="struts.action.BuscaPrincipalAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/criar_documento.jsp</result>
+         </action>
+         
+<!--  ###################Links de Navegação das Paginas######################   -->
+         
+         <action name="busca" class="struts.action.PageBuscaAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/busca.jsp</result>
+         </action>
+         
+         <action name="documento" class="struts.action.PageDocumentoAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/criar_documento.jsp</result>
+         </action>
+         
+         <action name="modelo" class="struts.action.PageModeloAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/criar_template.jsp</result>
+         </action>
+         
+         <action name="trecho" class="struts.action.PageTrechoAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/criar_trecho.jsp</result>
+         </action>
+         
+         <action name="index" class="struts.action.PageIndexAction">
+            <interceptor-ref name="autorizarAcesso"/>
+            <result name="success">/index.jsp</result>
+         </action>
+<!--  #######################################################################   -->
    
     </package>
 </struts>

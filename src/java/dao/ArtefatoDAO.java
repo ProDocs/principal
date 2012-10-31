@@ -160,7 +160,7 @@ public class ArtefatoDAO  implements Dao{
       public List<Artefato> buscaTrecho(String conteudo) throws SQLException{
         String nome = conteudo;
         ResultSet rs;
-        String sql = "SELECT * FROM ARTEFATO WHERE conteudo LIKE ? OR "+
+        String sql = "SELECT * FROM ARTEFATO WHERE conteudo LIKE ? "+
                      "AND tipo = 2 " +
                      "AND aprovado = 1 ";
 

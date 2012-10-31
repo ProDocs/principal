@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Notificacoes {
+public class Notificacoes implements Serializable{
     private int idArtetafo;
     private int idGestor;
     private int idNotificacoes;
