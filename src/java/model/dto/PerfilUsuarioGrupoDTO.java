@@ -2,19 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.dto;
 
 import java.io.Serializable;
+import model.Grupo;
 
 /**
  *
- * @author Windows
+ * @author discover
  */
-public class Grupo_Usuario implements Serializable{
-    private int idGrupo;
-    private int idUsuario;
+public class PerfilUsuarioGrupoDTO extends Grupo implements Serializable{
+    
     private String perfil;
+
     private Boolean aprovado;
+
+    
+    
+    public PerfilUsuarioGrupoDTO() {
+    }
 
     public Boolean getAprovado() {
         return aprovado;
@@ -24,22 +30,6 @@ public class Grupo_Usuario implements Serializable{
         this.aprovado = aprovado;
     }
     
-    public int getIdGrupo() {
-        return idGrupo;
-    }
-
-    public void setIdGrupo(int idGrupo) {
-        this.idGrupo = idGrupo;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public String getPerfil() {
         return perfil;
     }
@@ -47,4 +37,7 @@ public class Grupo_Usuario implements Serializable{
     public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
+    
+    
+    
 }

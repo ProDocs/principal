@@ -9,8 +9,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.Grupo;
 import model.Usuario;
+import model.dto.PerfilUsuarioGrupoDTO;
 import tipo.TipoSessionObjects;
 
 /**
@@ -23,23 +23,23 @@ public class PageModeloAction extends ActionSupport{
     
     Map<String, Object> session = ActionContext.getContext().getSession();
     
-    private String selectedGroup;
+    private int selectedGroup;
     private Usuario userLogado;
-    private List<Grupo> gruposUsuario = new ArrayList<Grupo>();
+    private List<PerfilUsuarioGrupoDTO> gruposUsuario = new ArrayList<PerfilUsuarioGrupoDTO>();
     
-     public String getSelectedGroup() {
+     public int getSelectedGroup() {
         return selectedGroup;
     }
 
-    public void setSelectedGroup(String selectedGroup) {
+    public void setSelectedGroup(int selectedGroup) {
         this.selectedGroup = selectedGroup;
     }
 
-    public List<Grupo> getGruposUsuario() {
+    public List<PerfilUsuarioGrupoDTO> getGruposUsuario() {
         return gruposUsuario;
     }
 
-    public void setGruposUsuario(List<Grupo> gruposUsuario) {
+    public void setGruposUsuario(List<PerfilUsuarioGrupoDTO> gruposUsuario) {
         this.gruposUsuario = gruposUsuario;
     }
 
@@ -58,10 +58,10 @@ public class PageModeloAction extends ActionSupport{
         userLogado = (Usuario) ActionContext.getContext().getSession().get(objSession.USER_LOGADO.getDescricao());
         
         //Captura grupos do usuario Logado
-        gruposUsuario = (List<Grupo>) ActionContext.getContext().getSession().get(objSession.USER_GROUPS.getDescricao());
+        gruposUsuario = (List<PerfilUsuarioGrupoDTO>) ActionContext.getContext().getSession().get(objSession.USER_GROUPS.getDescricao());
 
         //Obtem grupo selecionado
-        selectedGroup = (String) ActionContext.getContext().getSession().get(objSession.SELECTED_GROUP.getDescricao());
+        selectedGroup = (Integer) ActionContext.getContext().getSession().get(objSession.SELECTED_GROUP.getDescricao());
         
         return SUCCESS;
     }

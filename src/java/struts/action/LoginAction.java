@@ -12,39 +12,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.Grupo;
 import model.Usuario;
 import model.dto.FiltroGruposUsuarioDTO;
+import model.dto.PerfilUsuarioGrupoDTO;
+import tipo.TipoPerfilUsuario;
 import tipo.TipoSessionObjects;
 
 /**
  *
- * @author Pablo
+ * @author Jones
  */
 public class LoginAction extends ActionSupport {
     
-    public TipoSessionObjects objSession;
+    private TipoSessionObjects objSession;
+    private TipoPerfilUsuario tipoPerfil;
 
     Map<String, Object> session = ActionContext.getContext().getSession();
 
     private Usuario userLogin;//recebe o usuário do request
     private Usuario userLogado;//usuario guardado na sessão
-    private String selectedGroup;//grupo definido na sessão
-    private List<Grupo> gruposUsuario = new ArrayList<Grupo>();//grupos do usuario guardados na sessao
+    private int selectedGroup;//grupo definido na sessão
+    private List<PerfilUsuarioGrupoDTO> gruposUsuario = new ArrayList<PerfilUsuarioGrupoDTO>();//grupos do usuario guardados na sessao
 
-    public String getSelectedGroup() {
+    public int getSelectedGroup() {
         return selectedGroup;
     }
 
-    public void setSelectedGroup(String selectedGroup) {
+    public void setSelectedGroup(int selectedGroup) {
         this.selectedGroup = selectedGroup;
     }
     
-    public List<Grupo> getGruposUsuario() {
+    public List<PerfilUsuarioGrupoDTO> getGruposUsuario() {
         return gruposUsuario;
     }
 
-    public void setGruposUsuario(List<Grupo> gruposUsuario) {
+    public void setGruposUsuario(List<PerfilUsuarioGrupoDTO> gruposUsuario) {
         this.gruposUsuario = gruposUsuario;
     }
     
@@ -71,6 +73,7 @@ public class LoginAction extends ActionSupport {
         userValido = validaLogin();
 
         if (userValido != null) {
+           
             //Guarda o usuario na sessão
             ActionContext.getContext().getSession().put(objSession.USER_LOGADO.getDescricao(), userValido);
             
@@ -86,22 +89,41 @@ public class LoginAction extends ActionSupport {
             //Guarda grupos do usuario na sessão
             ActionContext.getContext().getSession().put(objSession.USER_GROUPS.getDescricao(), gruposUsuario);
             
-            System.out.println("Grupo Default "+ gruposUsuario.get(0).getNome());
             
-            //Guarda grupo selecionado na sessão
-            selectedGroup = gruposUsuario.get(0).getNome();
-            
-            ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), selectedGroup);
-            
-            return SUCCESS;
-            
-            //TODO implementação de validação do perfil para sysadmin
-            /*if (userValido.getEmail() == null) {
-                return SUCCESS;
-            } else {
-                return "userAdmin";
-            }*/
-            
+                for(int i = 0; i < gruposUsuario.size(); i++){
+                    
+                   if(gruposUsuario.get(i).getAprovado()){
+                    
+                        //Verifica Perfil de Usuario
+                        if(gruposUsuario.get(i).getPerfil().equalsIgnoreCase(tipoPerfil.LEITOR.getDescricao())){
+
+                            System.out.println("Grupo Default "+ gruposUsuario.get(i).getNome());
+                            //Guarda grupo selecionado na sessão
+                            selectedGroup = i;
+                            ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), selectedGroup);
+                            return tipoPerfil.LEITOR.getDescricao();
+
+                        }
+                        else if(gruposUsuario.get(i).getPerfil().equalsIgnoreCase(tipoPerfil.SYSADMIN.getDescricao())){
+
+                            System.out.println("Grupo Default "+ gruposUsuario.get(i).getNome());
+                            //Guarda grupo selecionado na sessão
+                            selectedGroup = i;
+                            ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), selectedGroup);
+                            return tipoPerfil.SYSADMIN.getDescricao();
+
+                        }
+                        //Usuario Gestor ou Editor
+                            System.out.println("Grupo Default "+ gruposUsuario.get(i).getNome());
+                            //Guarda grupo selecionado na sessão
+                            selectedGroup = i;
+                            ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), selectedGroup);
+                            return SUCCESS;
+                   }
+                }
+                
+                        return "pendente";
+
         } else {
             System.out.println("invalido");
             super.addFieldError("userLogin.login", "Login/Senha inválido");
@@ -140,12 +162,12 @@ public class LoginAction extends ActionSupport {
             }
     }
     
-    public List<Grupo> obterGruposUsuario(FiltroGruposUsuarioDTO filtro) throws Exception{
+    public List<PerfilUsuarioGrupoDTO> obterGruposUsuario(FiltroGruposUsuarioDTO filtro) throws Exception{
 
         System.out.println("Listando usuários do Grupo");
         try{
             GrupoDAO grupoDao = new GrupoDAO();
-            List<Grupo>gruposTMP = new ArrayList<Grupo>();
+            List<PerfilUsuarioGrupoDTO>gruposTMP = new ArrayList<PerfilUsuarioGrupoDTO>();
 
             gruposTMP = grupoDao.listarGrupos(filtro);
             return gruposTMP;
