@@ -29,29 +29,31 @@
 <!-- HEADER -->
 <body>
 <form name="groupForm" action="grupo">   
-<div class="header">
-    <div class="info">
-        &nbsp;
-        <b>Grupo :</b>
-         <select size="1" name="changeGroup" onchange="groupForm.submit();  ">
-           <s:iterator value="gruposUsuario" status="stat" >
-               <s:if test="#stat.index == selectedGroup">
-                   <option selected value="<s:property value="#stat.index"/>">${nome}</option>  
-               </s:if>
-               <s:else>
-                   <option value="<s:property value="#stat.index"/>">${nome}</option>
-               </s:else>
-           </s:iterator>
-        </select>
-        
-
-
-     <h2>Seja bem-vindo, <b>${userLogado.nome}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h2> 
-     <a title="Home" class="home" href="index">Home</a>
-     <a title="Minha Conta" class="user" href="#">User</a>
-     <a title="Logout" class="logout" href="userLogout">Logout</a>&nbsp;&nbsp;
+    
+    <div class="header">
+    <div class="box-logo-top">
+    	<a href="index">Prodocs</a>
     </div>
-</div>
+        <div class="info">
+        <h2>Seja bem-vindo, ${userLogado.nome}</h2>
+        <div class="category">
+     	<label>Grupo: </label>
+            <select size="1" name="changeGroup" onchange="groupForm.submit();  ">
+               <s:iterator value="gruposUsuario" status="stat" >
+                   <s:if test="#stat.index == selectedGroup">
+                       <option selected value="<s:property value="#stat.index"/>">${nome}</option>  
+                   </s:if>
+                   <s:else>
+                       <option value="<s:property value="#stat.index"/>">${nome}</option>
+                   </s:else>
+               </s:iterator>
+            </select>    
+        </div>
+            <a class="user" href="#" title="Perfil">User</a>
+            <a class="home" href="index" title="Home">Home</a>
+            <a class="logout" href="userLogout" title="Sair">Logout</a>
+        </div>
+    </div>
 </form>
 
 

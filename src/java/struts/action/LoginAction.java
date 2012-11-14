@@ -78,7 +78,7 @@ public class LoginAction extends ActionSupport {
             ActionContext.getContext().getSession().put(objSession.USER_LOGADO.getDescricao(), userValido);
             
             //Carrega dados do usuário para utilizar na view
-            userLogado = (Usuario) ActionContext.getContext().getSession().get(objSession.USER_LOGADO.getDescricao());
+            userLogado = userValido;
                    
             FiltroGruposUsuarioDTO filtro = new FiltroGruposUsuarioDTO();
             filtro.setIdUsuario(userLogado.getIdUsuario());
