@@ -8,9 +8,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
+<%@taglib  prefix="sj" uri="/struts2-jquery-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
+<sj:head compressed="false"/>
+<sj:head jqueryui="true"/>
+<title>::ProDocs::</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -21,31 +25,37 @@
 <script type="text/javascript" src="script/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="script/functions.js"></script>
 
-
+</head>
 <!-- HEADER -->
 <body>
-<div class="header">
-    <div class="info">
-        &nbsp;
-        <b>Grupo :</b>
-      
-     <select size="1" name="comboGrupos">
-       <s:iterator value="gruposUsuario" status="stat" >
-           <s:if test="nome.equals(selectedGroup)">
-               <option selected value="<s:property value="gruposUsuario[#stat.index].idGrupo"/>">${nome}</option>
-           </s:if>
-           <s:else>
-               <option value="<s:property value="gruposUsuario[#stat.index].idGrupo"/>">${nome}</option>
-           </s:else>
-       </s:iterator>
-     </select>
-        
-     <h2>Seja bem-vindo, <b>${userLogado.nome}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h2> 
-     <a class="user" href="#">User</a>
-     <a title="asdfasdf" class="home" href="index">Home</a>
-     <a class="logout" href="userLogout">Logout</a>&nbsp;&nbsp;
+<form name="groupForm" action="grupo">   
+    
+    <div class="header">
+    <div class="box-logo-top">
+    	<a href="index">Prodocs</a>
     </div>
-</div>
+        <div class="info">
+        <h2>Seja bem-vindo, ${userLogado.nome}</h2>
+        <div class="category">
+     	<label>Grupo: </label>
+            <select size="1" name="changeGroup" onchange="groupForm.submit();  ">
+               <s:iterator value="gruposUsuario" status="stat" >
+                   <s:if test="#stat.index == selectedGroup">
+                       <option selected value="<s:property value="#stat.index"/>">${nome}</option>  
+                   </s:if>
+                   <s:else>
+                       <option value="<s:property value="#stat.index"/>">${nome}</option>
+                   </s:else>
+               </s:iterator>
+            </select>    
+        </div>
+            <a class="user" href="#" title="Perfil">User</a>
+            <a class="home" href="index" title="Home">Home</a>
+            <a class="logout" href="userLogout" title="Sair">Logout</a>
+        </div>
+    </div>
+</form>
+
 
 
 

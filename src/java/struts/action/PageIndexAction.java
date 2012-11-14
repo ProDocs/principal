@@ -8,9 +8,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import model.Grupo;
 import model.Usuario;
+import model.dto.PerfilUsuarioGrupoDTO;
+import tipo.TipoPerfilUsuario;
 import tipo.TipoSessionObjects;
 
 /**
@@ -19,27 +19,23 @@ import tipo.TipoSessionObjects;
  */
 public class PageIndexAction extends ActionSupport{
     
-    private TipoSessionObjects objSession;
-    
-    Map<String, Object> session = ActionContext.getContext().getSession();
-    
-    private String selectedGroup;
+    private int selectedGroup;
     private Usuario userLogado;
-    private List<Grupo> gruposUsuario = new ArrayList<Grupo>();
+    private List<PerfilUsuarioGrupoDTO> gruposUsuario = new ArrayList<PerfilUsuarioGrupoDTO>();
     
-     public String getSelectedGroup() {
+     public int getSelectedGroup() {
         return selectedGroup;
     }
 
-    public void setSelectedGroup(String selectedGroup) {
+    public void setSelectedGroup(int selectedGroup) {
         this.selectedGroup = selectedGroup;
     }
 
-    public List<Grupo> getGruposUsuario() {
+    public List<PerfilUsuarioGrupoDTO> getGruposUsuario() {
         return gruposUsuario;
     }
 
-    public void setGruposUsuario(List<Grupo> gruposUsuario) {
+    public void setGruposUsuario(List<PerfilUsuarioGrupoDTO> gruposUsuario) {
         this.gruposUsuario = gruposUsuario;
     }
 
@@ -55,14 +51,25 @@ public class PageIndexAction extends ActionSupport{
     public String execute() throws Exception {
 
         //Captura usuario logado
-        userLogado = (Usuario) ActionContext.getContext().getSession().get(objSession.USER_LOGADO.getDescricao());
+        userLogado = (Usuario) ActionContext.getContext().getSession().get(TipoSessionObjects.USER_LOGADO.getDescricao());
         
         //Captura grupos do usuario Logado
-        gruposUsuario = (List<Grupo>) ActionContext.getContext().getSession().get(objSession.USER_GROUPS.getDescricao());
+        gruposUsuario = (List<PerfilUsuarioGrupoDTO>) ActionContext.getContext().getSession().get(TipoSessionObjects.USER_GROUPS.getDescricao());
 
         //Obtem grupo selecionado
-        selectedGroup = (String) ActionContext.getContext().getSession().get(objSession.SELECTED_GROUP.getDescricao());
+        selectedGroup = (Integer) ActionContext.getContext().getSession().get(TipoSessionObjects.SELECTED_GROUP.getDescricao());
         
+        if (gruposUsuario.get(selectedGroup).getPerfil().equalsIgnoreCase(TipoPerfilUsuario.LEITOR.getDescricao())){
+
+            System.out.println("Index Leitor");
+            return TipoPerfilUsuario.LEITOR.getDescricao();
+        }
+        else if (gruposUsuario.get(selectedGroup).getPerfil().equalsIgnoreCase(TipoPerfilUsuario.SYSADMIN.getDescricao())){
+
+            System.out.println("Index SysAdmin");
+            return TipoPerfilUsuario.SYSADMIN.getDescricao();
+        }
+        System.out.println("Index Gestor/Editor");
         return SUCCESS;
     }
     

@@ -4,6 +4,8 @@
  */
 package filtro;
 
+import java.util.List;
+
 /**
  *
  * @author discover
@@ -11,9 +13,17 @@ package filtro;
 public class FiltroBuscaTrecho {
     
     private String conteudo;
-    private String tags;
+    private List<String> tags;
     private String titulo;
     private int idCategoria;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     public String getConteudo() {
         return conteudo;
@@ -29,14 +39,6 @@ public class FiltroBuscaTrecho {
 
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public String getTitulo() {

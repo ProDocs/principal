@@ -145,57 +145,7 @@ $(function(){
 	});
 })(jQuery);
 
-/* toggle advanced search fields */
-$(function(){
-	$('.adv-option > a').click(function(){
-		$('.adv-search').slideToggle('fast');
-	});
-});
-
-/* show the input tag */
-function showInputTag(){
-	if($('#select-trecho').val() == 'Trecho'){
-		$('#tag-trecho').show();
-	} else {
-		$('#tag-trecho').hide();
-	}
-}
-
-/* show the register form in home */
-function showRegister(obj){
-	if(obj == 'reg'){
-		$('.form-login').hide();
-		$('.form-register').toggle("slide", { direction: "right" }, 500);
-	} else if(obj == 'login'){
-		$('.form-register').hide();
-		$('.form-login').toggle("slide", { direction: "right" }, 500);
-	}
-}
-
-/* Placeholder html5 */
-// This adds 'placeholder' to the items listed in the jQuery .support object. 
-jQuery(function() {
-	jQuery.support.placeholder = false;
-	test = document.createElement('input');
-	if('placeholder' in test) jQuery.support.placeholder = true;
-});
-// This adds placeholder support to browsers that wouldn't otherwise support it. 
-$(function() {
-	if(!$.support.placeholder) { 
-		var active = document.activeElement;
-		$(':text').focus(function () {
-			if ($(this).attr('placeholder') != '' && $(this).val() == $(this).attr('placeholder')) {
-				$(this).val('').removeClass('hasPlaceholder');
-			}
-		}).blur(function () {
-			if ($(this).attr('placeholder') != '' && ($(this).val() == '' || $(this).val() == $(this).attr('placeholder'))) {
-				$(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
-			}
-		});
-		$(':text').blur();
-		$(active).focus();
-		$('form:eq(0)').submit(function () {
-			$(':text.hasPlaceholder').val('');
-		});
-	}
+/**/
+$(document).ready(function(){
+	var $dialog = $('<div></div>');
 });

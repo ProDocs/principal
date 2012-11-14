@@ -3,10 +3,12 @@
  * and open the template in the editor.
  */
 package dao;
+import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Grupo_Usuario;
+import model.dto.FiltroGruposUsuarioDTO;
 
 /**
  *
@@ -24,20 +26,30 @@ public class Grupo_UsuarioDAO implements Dao{
     @Override
     public void create(Object object) throws SQLException
     {
+        
         System.out.println("Dao CREATED");
+        
+        try{
+            
+            Grupo_Usuario group_user = (Grupo_Usuario) object;
+            String sql = "insert into grupo_usuario "
+                    + "values(?,?,?,?)";
 
-        Grupo_Usuario group_user = (Grupo_Usuario) object;
-        String sql = "insert into grupo (perfil) "
-                + "values(?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
 
-        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
-       
-        stm.setString(1, group_user.getPerfil());       
-      
+            stm.setInt(1, group_user.getIdGrupo());
+            stm.setInt(2, group_user.getIdUsuario());
+            stm.setString(3, group_user.getPerfil());
+            stm.setBoolean(4, group_user.getAprovado());       
 
-        stm.executeUpdate();
-        System.out.println(stm.toString());
-        System.out.println("Insersao de grupo_usuario ok!");
+            stm.executeUpdate();
+            System.out.println("Insersao de grupo_usuario ok!");
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        
     }
 
     /* consulta no BD */
@@ -88,7 +100,21 @@ public class Grupo_UsuarioDAO implements Dao{
         System.out.println("Grupo Excluido");
     }
     
-     
+    public String obterPerfilusuario(FiltroGruposUsuarioDTO filtro) throws SQLException{
+    
+        ResultSet rs;
+        String sql = "select perfil from grupo_usuario where idGrupo = ? and idUsuario = ?";
+        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+        stm.setInt(1, filtro.getIdGrupo());
+        stm.setInt(2, filtro.getIdUsuario());
+        rs = stm.executeQuery();
+        
+        if(rs.next()){
+        
+            return rs.getString(1);
+        }
+        return null;
+    } 
     
 }
 

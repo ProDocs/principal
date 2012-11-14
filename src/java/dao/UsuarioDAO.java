@@ -11,33 +11,40 @@ public class UsuarioDAO implements Dao {
     public UsuarioDAO() throws SQLException {
         dataSource = new DataSource();
     }
+    
 
     /* inserção no BD */
     @Override
     public void create(Object object) throws SQLException {
 
         System.out.println("Dao CREATE");
+        
+        try{
+            
+            Usuario usuario = (Usuario) object;
+            String sql = "insert into usuario (nome, sobrenome,  email, login, senha) "
+                    + "values(?,?,?,?,?)";
 
-        Usuario usuario = (Usuario) object;
-        String sql = "insert into usuario (nome, sobrenome,  email, login, senha, bloqueado) "
-                + "values(?,?,?,?,?,?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
 
-        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setString(1, usuario.getNome());
+            stm.setString(2, usuario.getSobrenome());
+            stm.setString(3, usuario.getEmail());
+            stm.setString(4, usuario.getLogin());
+            stm.setString(5, usuario.getSenha());    
 
-        stm.setString(1, usuario.getNome());
-        stm.setString(2, usuario.getSobrenome());
-        stm.setString(3, usuario.getEmail());
-        stm.setString(4, usuario.getLogin());
-        stm.setString(5, usuario.getSenha());    
-        stm.setBoolean(6, usuario.isBloqueado());
-       
-      
+            stm.executeUpdate();
+            System.out.println(stm.toString());
+            System.out.println("Insersao de usuario ok!");
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
-        stm.executeUpdate();
-        System.out.println(stm.toString());
-        System.out.println("Insersao de usuario ok!");
+        
     }
-
+    
+    /* remoçao no BD */
     @Override
     public void delete(Object object) throws SQLException {
 
@@ -49,7 +56,8 @@ public class UsuarioDAO implements Dao {
         System.out.println("Usuario Excluido");
 
     }
-
+    
+     /* consulta no BD */
     @Override
     public Object read(Object key) throws SQLException {
 
@@ -68,11 +76,57 @@ public class UsuarioDAO implements Dao {
             user.setEmail(rs.getString(4));
             user.setLogin(rs.getString(5));
             user.setSenha(rs.getString(6));
-            user.setBloqueado(rs.getBoolean(7));
        
             return user;
         }
         return null;
+    }
+    
+    
+    /******************************Metodos Customizados*********************************/
+    
+    public int cadastrarUsuario(Usuario usuario){
+    
+        try{
+  
+            create(usuario);
+
+            int idUsuario = loginExistente(usuario.getLogin());
+
+            return idUsuario;
+        
+        }
+        catch(Exception e){
+            System.out.println("Não encontrou o novo usuário");
+            e.printStackTrace();
+        
+        }
+        return 0;
+    }
+    
+
+    public int loginExistente(String login)throws SQLException{
+        
+        int pkUser = 0;
+        
+        try{
+            String sql = "select idUsuario from usuario where login=?";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setString(1, login);
+            ResultSet rs;
+            rs = stm.executeQuery();
+            
+            if(rs.next())
+            pkUser = rs.getInt("idUsuario");
+            
+            return pkUser;
+            
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return pkUser;
     }
 
     public Usuario readUserLoginPassWord(Object object) throws SQLException {
@@ -98,7 +152,6 @@ public class UsuarioDAO implements Dao {
             user.setEmail(rs.getString(4));
             user.setLogin(rs.getString(5));
             user.setSenha(rs.getString(6));
-            user.setBloqueado(rs.getBoolean(7));
            
             return user;
         }

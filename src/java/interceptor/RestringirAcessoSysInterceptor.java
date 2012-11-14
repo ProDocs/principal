@@ -9,21 +9,19 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import java.util.List;
 import model.Usuario;
 import model.dto.PerfilUsuarioGrupoDTO;
+import tipo.TipoPerfilUsuario;
 import tipo.TipoSessionObjects;
 
 /**
  * @author Jones
  **/
 
-/*
- * Interceptor utilizado para chamada dos links
- * Valida se o usuário esta logado
- * Valida se o usuario esta com o perfil aprovado para o grupo da sessão
- * 
+/* Valida se o usuario esta logado
+ * Bloqueia acesso indevido do usuario sysadmin 
  */
 
-public class AutorizarAcessoInterceptor implements Interceptor {
-
+public class RestringirAcessoSysInterceptor implements Interceptor {
+  
     @Override
     public void destroy() {
         
@@ -38,18 +36,28 @@ public class AutorizarAcessoInterceptor implements Interceptor {
     public String intercept(ActionInvocation ai) throws Exception {
         
         //Obtem Usuario Logado
-        Usuario usuarioLogado = (Usuario) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_LOGADO.getDescricao());
+        Usuario usuarioLogado = (Usuario) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_LOGADO.getDescricao());        
         //Obtem Lista de Grupos do Usuario
-        List<PerfilUsuarioGrupoDTO> perfilUsuario = (List<PerfilUsuarioGrupoDTO>) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_GROUPS.getDescricao());
+        List<PerfilUsuarioGrupoDTO> gruposUsuario = (List<PerfilUsuarioGrupoDTO>) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_GROUPS.getDescricao());
         //Obtendo grupo selecionado
         int selectedGroup = (Integer) ai.getInvocationContext().getSession().get(TipoSessionObjects.SELECTED_GROUP.getDescricao());
         
-        
         if(usuarioLogado != null){
-            if(perfilUsuario.get(selectedGroup).getAprovado()){
+            if(gruposUsuario.get(selectedGroup).getAprovado()){
 
+                if (gruposUsuario.get(selectedGroup).getPerfil().equalsIgnoreCase(TipoPerfilUsuario.SYSADMIN.getDescricao())){
+                    //restringe o acesso do Leitor ao painel de administração
+                    System.out.println("Acesso negado");
+                    return "negado";
+                
+                }
+                else{
+                    
+                    System.out.println("Acesso autorizado");
                     return ai.invokeActionOnly();
 
+                }
+                    
             }
             else{
                 System.out.println("Retornando global result pendente");
@@ -58,11 +66,12 @@ public class AutorizarAcessoInterceptor implements Interceptor {
             }
         
         }
+        else{
         
-        System.out.println("Retornando global result nao logado");
-        return "naoLogado";
+            return "naoLogado";
         
-       
+        }
+        
 
     }
 }

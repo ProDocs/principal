@@ -19,18 +19,9 @@ public class Usuario implements Serializable{
     private String senha;
     private String email;
     private String sobrenome;
-    private boolean bloqueado;
-
-
+  
+    
     public Usuario() {
-    }
-
-    public boolean isBloqueado() {
-        return bloqueado;
-    }
-
-    public void setBloqueado(boolean bloqueado) {
-        this.bloqueado = bloqueado;
     }
 
     public String getEmail() {

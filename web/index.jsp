@@ -6,10 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="sj" uri="/struts2-jquery-tags" %>
+
 <!-- Area do Topo -->
 <%@include file="header.jsp"%>
 
-<input type="hidden"  id="grupo" value="<s:property value="selectedGroup"/>" >
 
 <div class="wrapper">
     <div class="container-login shadows bordering">

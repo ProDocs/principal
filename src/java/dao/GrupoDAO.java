@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package dao;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Grupo;
 import model.dto.FiltroGruposUsuarioDTO;
+import model.dto.PerfilUsuarioGrupoDTO;
 
 /**
  *
@@ -81,6 +83,10 @@ public class GrupoDAO implements Dao{
         stm.setString(2, group.getDescricao());
         
         stm.executeUpdate();
+        
+        List<String> teste = new ArrayList<String>();
+        
+        
     }
 
     /* exclusao no BD */
@@ -95,14 +101,44 @@ public class GrupoDAO implements Dao{
         System.out.println("Grupo Excluido");
     }
     
-    public List<Grupo> listarGrupos(FiltroGruposUsuarioDTO idUsuario) throws SQLException{
+    public List<Grupo> listarTodosGrupos() throws SQLException{
     
         List<Grupo> grupos = new ArrayList<Grupo>();
         
         try{
+            
             ResultSet rs;
             String sql;
-            sql = ("Select distinct g.idGrupo, g.nome, g.descricao "+
+            sql = ("Select * from grupo");
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            
+            rs = stm.executeQuery();
+            
+            while(rs.next()){
+               
+               Grupo grupo = new Grupo();
+               
+               grupo.setDescricao(rs.getString("descricao"));
+               grupo.setIdGrupo(rs.getInt("idGrupo"));
+               grupo.setNome(rs.getString("nome"));
+               
+               grupos.add(grupo);
+
+            }
+            
+        }catch(Exception e){}
+        
+        return grupos;
+    }
+    
+    public List<PerfilUsuarioGrupoDTO> listarGrupos(FiltroGruposUsuarioDTO idUsuario) throws SQLException{
+    
+        List<PerfilUsuarioGrupoDTO> grupos = new ArrayList<PerfilUsuarioGrupoDTO>();
+        
+        try{
+            ResultSet rs;
+            String sql;
+            sql = ("Select distinct g.idGrupo, g.nome, gu.perfil, gu.aprovado "+
                             "from grupo g, grupo_usuario gu, usuario u "+ 
                             "where g.idGrupo = gu.idGrupo and gu.idUsuario = ?");
 
@@ -111,11 +147,12 @@ public class GrupoDAO implements Dao{
             rs = stm.executeQuery();
 
             while (rs.next()) {
-            Grupo grupo = new Grupo();
+            PerfilUsuarioGrupoDTO grupo = new PerfilUsuarioGrupoDTO();
 
-            grupo.setDescricao(rs.getString("descricao"));
+            grupo.setPerfil(rs.getString("perfil"));
             grupo.setIdGrupo(rs.getInt("idGrupo"));
             grupo.setNome(rs.getString("nome"));
+            grupo.setAprovado(rs.getBoolean("aprovado"));
 
             grupos.add(grupo);
  
