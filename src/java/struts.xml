@@ -4,68 +4,105 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">
-
+    <package name="default" extends="struts-default" namespace="/">
+        
         <interceptors>
-            <interceptor name="autorizarAcesso" class="interceptor.AutorizarAcessoInterceptor">
-            </interceptor>
-            <interceptor-stack name="seguranca">
-                <interceptor-ref name ="defaultStack"></interceptor-ref>
+           <interceptor name="autorizarAcesso" class="interceptor.AutorizarAcessoInterceptor"/>
+           <interceptor name="restringirAcesso" class="interceptor.RestringirAcessoInterceptor"/>
+           <interceptor name="restringirSysAdmin" class="interceptor.RestringirAcessoSysInterceptor"/>         
+           <interceptor-stack name="seguranca">
                 <interceptor-ref name ="autorizarAcesso"></interceptor-ref>
+                <interceptor-ref name ="defaultStack"></interceptor-ref>
             </interceptor-stack>
         </interceptors>
 
         <global-results>
             <result name="naoLogado">/login.jsp</result>
+            <result name="negado" type="chain">restrito</result>
+            <result name="pendente" type="chain">naoAprovado</result>
         </global-results>
-        
   
         <action name="userLogin" class="struts.action.LoginAction">
             <result name="input">/login.jsp</result>
             <result name="success">/index.jsp</result>
-            <result name="userLeitor">/index.jsp</result>
-            <result name="userAdmin">/index.jsp</result>
+            <result name="Leitor">/index.jsp</result>
+            <result name="sysadmin">/painelAdministracaoSistema.jsp</result>
             <result name="error">/login.jsp</result>
+            <result name="pendente">/infoUsuarioPendente.jsp</result>
         </action>
         
-
-        
-         <action name="userLogout" class="struts.action.LogoutAction">
+        <action name="userLogout" class="struts.action.LogoutAction">
             <result name="success">/login.jsp</result>
+        </action> 
+        
+        
+         <!-- Paginas de Validação (Result Interceptor) -->
+         <action name="naoAprovado" class="struts.action.PagesAction">
+            <result name="success">/infoUsuarioPendente.jsp</result>
+         </action>
+
+         <action name="restrito" class="struts.action.PagesAction">
+            <result name="success">/infoAcessoNegado.jsp</result>
+         </action>
+         <!-- Paginas de Validação (Result Interceptor) -->
+        
+         <!--Exemplo Ajax action-->
+         <action name="incluir" class="struts.action.TesteDivAction">
+            <result name="success">/embedded.jsp</result>
+         </action>
+         <!--Exemplo Ajax action-->
+         
+
+         <action name="grupo" class="struts.action.AlterarGrupoAction">
+            <result name="success">/index.jsp</result>
+            <result name="pendente">/infoUsuarioPendente.jsp</result>
          </action> 
          
          <action name="pesquisar" class="struts.action.BuscaPrincipalAction">
             <interceptor-ref name="autorizarAcesso"/>
-            <result name="success">/criar_documento.jsp</result>
+            <result name="success">/busca.jsp</result>
+         </action>
+
+         <action name="cadastroUsuario" class="struts.action.CadastrarUsuarioAction">
+            <result name="input" >/cadastro.jsp</result>
+            <result name="success">/infoUsuarioCadastrado.jsp</result>
+            <result name="error">/cadastro.jsp</result>
          </action>
          
-<!--  ###################Links de Navegação das Paginas######################   -->
          
-         <action name="busca" class="struts.action.PageBuscaAction">
-            <interceptor-ref name="autorizarAcesso"/>
+<!--  ###################Links de Navegação das Paginas######################   -->
+
+        <action name="cadastro" class="struts.action.PagesAction">
+            <result name="success">/cadastro.jsp</result>
+         </action>
+         
+         <action name="busca" class="struts.action.PagesAction">
+            <interceptor-ref name="restringirSysAdmin"/>
             <result name="success">/busca.jsp</result>
          </action>
          
-         <action name="documento" class="struts.action.PageDocumentoAction">
-            <interceptor-ref name="autorizarAcesso"/>
+         <action name="documento" class="struts.action.PagesAction">
+            <interceptor-ref name="restringirAcesso"/>
             <result name="success">/criar_documento.jsp</result>
          </action>
          
-         <action name="modelo" class="struts.action.PageModeloAction">
-            <interceptor-ref name="autorizarAcesso"/>
+         <action name="modelo" class="struts.action.PagesAction">
+            <interceptor-ref name="restringirAcesso"/>
             <result name="success">/criar_template.jsp</result>
          </action>
          
-         <action name="trecho" class="struts.action.PageTrechoAction">
-            <interceptor-ref name="autorizarAcesso"/>
+         <action name="trecho" class="struts.action.PagesAction">
+            <interceptor-ref name="restringirAcesso"/>
             <result name="success">/criar_trecho.jsp</result>
          </action>
          
          <action name="index" class="struts.action.PageIndexAction">
-            <interceptor-ref name="autorizarAcesso"/>
+            <interceptor-ref name="autorizarAcesso"/> 
             <result name="success">/index.jsp</result>
+            <result name="Leitor">/index.jsp</result>
+            <result name="sysadmin">/painelAdministracaoSistema.jsp</result>
          </action>
-<!--  #######################################################################   -->
+<!--  #######################################################################  -->
    
     </package>
 </struts>

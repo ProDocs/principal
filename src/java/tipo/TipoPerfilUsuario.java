@@ -6,14 +6,14 @@ package tipo;
 
 /**
  *
- * @author discover
+ * @author Jones
  */
 public enum TipoPerfilUsuario {
     
-    GESTOR("gestor"),
-    EDITOR("editor"),
-    LEITOR("leitor"),
-    SYSADMIN("sysadmin");
+    SYSADMIN("sysadmin"),
+    GESTOR("Gestor"),
+    EDITOR("Editor"),
+    LEITOR("Leitor");
     
     private String descricao;
 
