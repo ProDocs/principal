@@ -22,13 +22,12 @@
             <result name="pendente" type="chain">naoAprovado</result>
         </global-results>
   
-        <action name="userLogin" class="struts.action.LoginAction">
+  
+        <!--Login ProDocs -->
+        <action name="ProDocs" class="struts.action.LoginAction">
             <result name="input">/login.jsp</result>
             <result name="success">/index.jsp</result>
-            <result name="Leitor">/index.jsp</result>
-            <result name="sysadmin">/painelAdministracaoSistema.jsp</result>
             <result name="error">/login.jsp</result>
-            <result name="pendente">/infoUsuarioPendente.jsp</result>
         </action>
         
         <action name="userLogout" class="struts.action.LogoutAction">
@@ -37,12 +36,12 @@
         
         
          <!-- Paginas de Validação (Result Interceptor) -->
-         <action name="naoAprovado" class="struts.action.PagesAction">
-            <result name="success">/infoUsuarioPendente.jsp</result>
+         <action name="naoAprovado">
+            <result>/infoUsuarioPendente.jsp</result>
          </action>
 
-         <action name="restrito" class="struts.action.PagesAction">
-            <result name="success">/infoAcessoNegado.jsp</result>
+         <action name="restrito">
+            <result>/infoAcessoNegado.jsp</result>
          </action>
          <!-- Paginas de Validação (Result Interceptor) -->
         
@@ -50,30 +49,57 @@
          <action name="incluir" class="struts.action.TesteDivAction">
             <result name="success">/embedded.jsp</result>
          </action>
+         <action name="editor">
+            <result>/ajaxEditor.jsp</result>    
+         </action>
+         <action name="editor2">
+            <result>/ajaxEditor2.jsp</result>    
+         </action>
          <!--Exemplo Ajax action-->
          
+         <!--Actions Ajax-->
+         <action name="grupos" class="struts.action.ListarGruposUsuarioAjaxAction">
+            <result name="success">/ajaxComboGruposHeader.jsp</result>
+         </action>
+         
+         <action name="categorias" class="struts.action.ListarCategoriasGrupoAjaxAction">
+            <result name="success">/ajaxComboCategoriasBusca.jsp</result>
+         </action>
+         <!--Actions Ajax-->
 
-         <action name="grupo" class="struts.action.AlterarGrupoAction">
-            <result name="success">/index.jsp</result>
-            <result name="pendente">/infoUsuarioPendente.jsp</result>
-         </action> 
          
          <action name="pesquisar" class="struts.action.BuscaPrincipalAction">
             <interceptor-ref name="autorizarAcesso"/>
             <result name="success">/busca.jsp</result>
          </action>
 
-         <action name="cadastroUsuario" class="struts.action.CadastrarUsuarioAction">
-            <result name="input" >/cadastro.jsp</result>
-            <result name="success">/infoUsuarioCadastrado.jsp</result>
-            <result name="error">/cadastro.jsp</result>
+         <action name="painel" class="struts.action.PainelTarefasAction">
+            <interceptor-ref name="restringirAcesso"/>
+            <result name="Gestor">/painelTarefasGestor.jsp</result><!--Substituir por chamada de action-->
+            <result name="Editor">/painelTarefasEditor.jsp</result><!--Substituir por chamada de action-->
+            <result name="negado" type="chain">restrito</result>
+            <result name="naoLogado" type="chain">restrito</result>
          </action>
          
          
 <!--  ###################Links de Navegação das Paginas######################   -->
 
-        <action name="cadastro" class="struts.action.PagesAction">
-            <result name="success">/cadastro.jsp</result>
+
+         <action name="display" class="struts.action.DisplayAjaxAction">
+            <result name="index" type="chain">index</result>
+            <result name="busca">/busca.jsp</result>
+            <result name="documento">/criar_documento.jsp</result>
+            <result name="modelo">/criar_template.jsp</result>
+            <result name="trecho">/criar_trecho.jsp</result>
+            <result name="painel" type="chain">painel</result>
+         </action>
+
+         
+         <action name="cadastro" class="struts.action.CadastrarUsuarioAction">
+            <result name="input">/ajaxCadastro.jsp</result>
+            <result name="formulario">/ajaxCadastro.jsp</result>
+            <result name="success">/infoUsuarioCadastrado.jsp</result>
+            <result name="error">/infoErroCadastroUsuario.jsp</result>
          </action>
          
          <action name="busca" class="struts.action.PagesAction">
@@ -85,7 +111,6 @@
             <interceptor-ref name="restringirAcesso"/>
             <result name="success">/criar_documento.jsp</result>
          </action>
-         
          <action name="modelo" class="struts.action.PagesAction">
             <interceptor-ref name="restringirAcesso"/>
             <result name="success">/criar_template.jsp</result>
@@ -97,9 +122,10 @@
          </action>
          
          <action name="index" class="struts.action.PageIndexAction">
-            <interceptor-ref name="autorizarAcesso"/> 
-            <result name="success">/index.jsp</result>
-            <result name="Leitor">/index.jsp</result>
+            <result name="naoLogado">/login.jsp</result>
+            <result name="pendente" type="chain" >naoAprovado</result>
+            <result name="success">/ajaxHome.jsp</result>
+            <result name="Leitor">/ajaxHome_Leitor.jsp</result>
             <result name="sysadmin">/painelAdministracaoSistema.jsp</result>
          </action>
 <!--  #######################################################################  -->

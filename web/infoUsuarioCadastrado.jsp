@@ -7,9 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- Cabeçalho-->
-<%@include file="header.jsp"%>
+
 
 <h1>Usuario cadastrado com sucesso!</h1>
 
+<a href="javascript:;" onclick="showRegister('login'),removeParam()">Voltar</a>
+
 <!-- Rodape-->
-<%@include file="footer.jsp"%>
+

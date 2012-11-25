@@ -4,58 +4,55 @@
  */
 package filtro;
 
-import java.util.List;
-
 /**
  *
  * @author discover
  */
 public class FiltroBuscaPrincipal {
-    
-    private String conteudo;
-    private List<String> tags;
-    private String titulo;
-    private int tipo;
-    private int idCategoria;
+    private String pesquisa;
+    private String categoria;
+    private String tipoArtefato;
+    private String tags;
+    private int idGrupo;
 
-    public int getTipo() {
-        return tipo;
+    public String getPesquisa() {
+        return pesquisa;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
     }
 
-    public List<String> getTags() {
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
-    
-    public String getConteudo() {
-        return conteudo;
+
+    public String getTipoArtefato() {
+        return tipoArtefato;
     }
 
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
+    public void setTipoArtefato(String tipoArtefato) {
+        this.tipoArtefato = tipoArtefato;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getIdGrupo() {
+        return idGrupo;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
     }
     
 }

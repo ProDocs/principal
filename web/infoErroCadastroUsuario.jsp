@@ -6,13 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!-- Cabeçalho-->
-<%@include file="header.jsp"%>
+
 
 <h1>Ops!</h1>
 <br>
 <h1>Falha ao cadastrar usuario</h1>
 <br>
 <h1>Tente novamente mais tarde</h1>
-<!-- Rodape-->
-<%@include file="footer.jsp"%>
+<br>
+<h1>Persistindo o erro, entre em contato com o administrador do sistema</h1>

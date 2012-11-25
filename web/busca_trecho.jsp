@@ -7,11 +7,11 @@
 
 
 
-
+<div class="sidebar shadows">
      <div class="formsearch">
          <form action="BuscaAction">    
             <input class="txtsearch" type="text" >
-            <input class="button-seach" type="image" src="View/images/1343703624_24.png" value="">
+            <input class="button-seach" type="image" src="images/1343703624_24.png" value="">
          </form>
      </div>
                 <s:if test="%{produtos.isEmpty}">
@@ -31,6 +31,6 @@
                 </ul>
             </s:iterator>
         </div>   
-
+</div>
           
 

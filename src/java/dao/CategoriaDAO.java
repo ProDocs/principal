@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.Categoria;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -97,6 +99,44 @@ public class CategoriaDAO implements Dao{
         stm.setInt(1, a.getIdCategoria());
 
         stm.executeUpdate();
+    }
+    
+    public List<Categoria> listarCategoriasGrupo(int idGrupo) throws SQLException{
+    
+    List<Categoria> categorias = new ArrayList<Categoria>();
+    
+    try{
+        
+        ResultSet rs;
+        String sql;
+        sql = "select * from categoria where idGrupo_FK = ? ";
+        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+        
+        stm.setInt(1, idGrupo);
+        rs = stm.executeQuery();
+        
+        while(rs.next()){
+        
+            Categoria categoria = new Categoria();
+            categoria.setDescricao(rs.getString("descricao"));
+            categoria.setIdCategoria(rs.getInt("idCategoria"));
+            categoria.setNome(rs.getString("nome"));
+            categoria.setIdGrupo(rs.getInt("idGrupo_FK"));
+            
+            categorias.add(categoria);
+        
+        }
+        
+        return categorias;
+        
+    
+    }catch(Exception e){
+    
+        return null;
+    
+    }
+    
+    
     }
     
 }
