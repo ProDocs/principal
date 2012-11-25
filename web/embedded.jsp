@@ -11,8 +11,8 @@
 <!-- Area do Topo -->
 
         
-<h1>Hello World!</h1>
+<h1>Validar Form</h1>
 
-<label value ="<s:property value="mensagem"/>">${mensagem}</label>
+    <%--<label value ="<s:property value="mensagem"/>">${mensagem}</label>--%>
 
 

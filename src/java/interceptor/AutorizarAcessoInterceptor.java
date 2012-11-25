@@ -6,9 +6,7 @@ package interceptor;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
-import java.util.List;
 import model.Usuario;
-import model.dto.PerfilUsuarioGrupoDTO;
 import tipo.TipoSessionObjects;
 
 /**
@@ -39,30 +37,15 @@ public class AutorizarAcessoInterceptor implements Interceptor {
         
         //Obtem Usuario Logado
         Usuario usuarioLogado = (Usuario) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_LOGADO.getDescricao());
-        //Obtem Lista de Grupos do Usuario
-        List<PerfilUsuarioGrupoDTO> perfilUsuario = (List<PerfilUsuarioGrupoDTO>) ai.getInvocationContext().getSession().get(TipoSessionObjects.USER_GROUPS.getDescricao());
-        //Obtendo grupo selecionado
-        int selectedGroup = (Integer) ai.getInvocationContext().getSession().get(TipoSessionObjects.SELECTED_GROUP.getDescricao());
-        
-        
+
         if(usuarioLogado != null){
-            if(perfilUsuario.get(selectedGroup).getAprovado()){
+            System.out.println("Usuario logado");
+            return ai.invokeActionOnly();
 
-                    return ai.invokeActionOnly();
-
-            }
-            else{
-                System.out.println("Retornando global result pendente");
-                return "pendente";
-            
-            }
-        
         }
         
         System.out.println("Retornando global result nao logado");
         return "naoLogado";
-        
-       
 
     }
 }

@@ -6,10 +6,12 @@ package struts.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.GrupoDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import model.Usuario;
+import model.dto.FiltroGruposUsuarioDTO;
 import model.dto.PerfilUsuarioGrupoDTO;
 import tipo.TipoSessionObjects;
 
@@ -19,14 +21,9 @@ import tipo.TipoSessionObjects;
  */
 public class AlterarGrupoAction extends ActionSupport {
     
-    private TipoSessionObjects objSession;
-    
-    Map<String, Object> session = ActionContext.getContext().getSession();
-    
     private int changeGroup;
-    private int selectedGroup;
     private Usuario userLogado;
-    private List<PerfilUsuarioGrupoDTO> gruposUsuario = new ArrayList<PerfilUsuarioGrupoDTO>();
+    
 
     public int getChangeGroup() {
         return changeGroup;
@@ -34,23 +31,6 @@ public class AlterarGrupoAction extends ActionSupport {
 
     public void setChangeGroup(int changeGroup) {
         this.changeGroup = changeGroup;
-    }
-    
-    
-    public int getSelectedGroup() {
-        return selectedGroup;
-    }
-
-    public void setSelectedGroup(int selectedGroup) {
-        this.selectedGroup = selectedGroup;
-    }
-
-    public List<PerfilUsuarioGrupoDTO> getGruposUsuario() {
-        return gruposUsuario;
-    }
-
-    public void setGruposUsuario(List<PerfilUsuarioGrupoDTO> gruposUsuario) {
-        this.gruposUsuario = gruposUsuario;
     }
 
     public Usuario getUserLogado() {
@@ -65,21 +45,53 @@ public class AlterarGrupoAction extends ActionSupport {
     public String execute() throws Exception {
 
         //Captura usuario logado
-        userLogado = (Usuario) ActionContext.getContext().getSession().get(objSession.USER_LOGADO.getDescricao());
+        userLogado = (Usuario) ActionContext.getContext().getSession().get(TipoSessionObjects.USER_LOGADO.getDescricao());
+        
+        if(userLogado==null){
+        
+            return "naoLogado";
+            
+        }
         
         //Captura grupos do usuario Logado
-        gruposUsuario = (List<PerfilUsuarioGrupoDTO>) ActionContext.getContext().getSession().get(objSession.USER_GROUPS.getDescricao());
+        FiltroGruposUsuarioDTO filtro = new FiltroGruposUsuarioDTO();
+        filtro.setIdUsuario(userLogado.getIdUsuario());
+        List<PerfilUsuarioGrupoDTO> gruposUsuario = obterGruposUsuario(filtro);
 
-        ActionContext.getContext().getSession().put(objSession.SELECTED_GROUP.getDescricao(), changeGroup);
-        //Obtem grupo selecionado
-        selectedGroup = (Integer) ActionContext.getContext().getSession().get(objSession.SELECTED_GROUP.getDescricao());
+        //Seta grupo selecionado
+        ActionContext.getContext().getSession().put(TipoSessionObjects.SELECTED_GROUP.getDescricao(), changeGroup);
         
-        if(gruposUsuario.get(selectedGroup).getAprovado()){
+        for(PerfilUsuarioGrupoDTO perfilGrupo : gruposUsuario){
+        
+            if(perfilGrupo.getIdGrupo() == changeGroup){
+                if(perfilGrupo.getAprovado()){
+                    
+                    return SUCCESS;
+                    
+                }
+                
+                return "pendente";
             
-            return SUCCESS;
+            }
+        
         }
         
         return "pendente";
+    }
+    
+    public List<PerfilUsuarioGrupoDTO> obterGruposUsuario(FiltroGruposUsuarioDTO filtro) throws Exception{
+
+        System.out.println("Listando usuários do Grupo");
+        try{
+            GrupoDAO grupoDao = new GrupoDAO();
+            List<PerfilUsuarioGrupoDTO>gruposTMP = new ArrayList<PerfilUsuarioGrupoDTO>();
+
+            gruposTMP = grupoDao.listarGrupos(filtro);
+            return gruposTMP;
+           }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
     }
     
     

@@ -6,55 +6,50 @@ package struts.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.sql.SQLException;
+import filtro.FiltroBuscaPrincipal;
 import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import model.*;
-import dao.*;
-import org.apache.struts2.ServletActionContext;
+import model.Artefato;
+import tipo.TipoSessionObjects;
 /**
  *
  * @author ASUS
  */
 public class BuscaPrincipalAction extends ActionSupport {
     
-     HttpServletRequest request = ServletActionContext.getRequest();
-     Map<String, Object> session = ActionContext.getContext().getSession();
-     
-     private Artefato artefato = new Artefato();
-     private List<Artefato> lista;
+    
+    FiltroBuscaPrincipal filtro = new FiltroBuscaPrincipal();
 
-    public List<Artefato> getLista() {
-        return lista;
+    public FiltroBuscaPrincipal getFiltro() {
+        return filtro;
     }
 
-    public void setLista(List<Artefato> lista) {
-        this.lista = lista;
-    }
-
-    public Artefato getTrecho() {
-        return artefato;
-    }
-
-    public void setMusica(Artefato artefato) {
-        this.artefato = artefato;
+    public void setFiltro(FiltroBuscaPrincipal filtro) {
+        this.filtro = filtro;
     }
     
-    public String BuscaTrechos() {
-        try {
-            String user;
-            ArtefatoDAO dao = new ArtefatoDAO();
-            Usuario logado = (Usuario)session.get("USER_LOGADO");
-            user = (String) logado.getLogin();
-            
-            if(logado != null){
-            lista = dao.readAll(user);
-                return "success";
-            }else{return "error";}
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+    
+    
+    @Override
+    public String execute(){
+        int idGrupo = (Integer) ActionContext.getContext().getSession().get(TipoSessionObjects.SELECTED_GROUP.getDescricao());
+        filtro.setIdGrupo(idGrupo);
+        
+    
+        return null;
     }
+
+    
+    public String[]splitCSV(String csv){
+        String delimiter = ",";
+        String[]tags;
+        tags = csv.split(delimiter);
+
+        return tags;
+    }
+    public List<Artefato> resultadoBusca(FiltroBuscaPrincipal filtro){
+        
+        return null;
+    
+    }
+    
 }

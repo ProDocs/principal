@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp"%>
+
 <div class="sub-header">
 	<div class="main-search">
         <input type="text" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if (this.value == 'Search') {this.value = '';}"/>
@@ -125,4 +125,4 @@
         </div>
    
 </div>
-<%@include file="footer.jsp"%>
+

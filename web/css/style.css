@@ -27,7 +27,7 @@ html, code, var, cite, kbd, samp, pre { font:inherit;}
 body { background-color:#fff; font-family: Arial, Helvetica, sans-serif; background:#fff; color:#3E3E3E; overflow:hidden}
 .bordering {border-radius: 5px; -moz-border-radius: 5px; -webkit-box-shadow: 5px;}
 .shadows {box-shadow: 0 2px 11px #BBBBBB; -webkit-box-shadow: 0 2px 11px #BBBBBB; -moz-box-shadow: 0 2px 11px #BBBBBB;}
-input[type="text"], input[type="password"], select{ border: none; color: #535353; font-size: 12px; height: 25px; line-height: 18px; margin-bottom: 10px; padding: 0 5px 5px; border-radius: 3px; width:100%; box-shadow: 1px 2px 7px #BBBBBB inset; -moz-border-radius: 1px 2px 3px #DDDDDD inset; -webkit-box-shadow: 1px 2px 3px #DDDDDD inset;}
+input[type="text"], input[type="password"], select, textarea{ border: none; color: #535353; font-size: 12px; height: 25px; line-height: 18px; margin-bottom: 10px; padding: 0 5px 5px; border-radius: 3px; width:100%; box-shadow: 1px 2px 7px #BBBBBB inset; -moz-border-radius: 1px 2px 3px #DDDDDD inset; -webkit-box-shadow: 1px 2px 3px #DDDDDD inset;}
 select { height: 30px; padding-top: 8px;}
 
 input[type="button"], button{background-color: #336699; border: 0.5px solid #BBBBBB; border-radius: 3px; height: 25px; padding: 5px; color:#fff; font-size:10px; font-weight:bold; cursor: pointer; background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc1NTUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiM1RTlGRDEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMzMzY2OTkiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c1NTUpIiAvPgo8L3N2Zz4=);}
@@ -69,7 +69,7 @@ input[type="button"], button{background-color: #336699; border: 0.5px solid #BBB
 .box-logo-top a { text-indent:-99999px; display:block; width:33px; height:33px; background-image:url(../images/icon-logo-white-prodocs.png); margin:0 auto}
 
 /* doc manager */
-.doc-manager { float:right; height:100px; width:30%; padding-right:16px}
+.doc-manager { float:right; height:50px; width:90%; padding-right:16px; padding-top:15px; padding-right: 20px}
 .doc-manager a { margin-top: 10px; display: inline-block; height: 17px; color:#fff}
 .opt-save { width:400px;}
 
@@ -90,10 +90,21 @@ input[type="button"], button{background-color: #336699; border: 0.5px solid #BBB
 .editor textarea{}
 
 /* sidebar */
-.sidebar { background-color: #F0F0F0; position: fixed; width: 30%; z-index: 3; right: 16px; top: 150px; bottom:0; display:block}
+.sidebar { background-color: #F0F0F0; position: fixed; width: 30%; z-index: 3; right: 20px; top: 55px; bottom:50; display:block}
 .sidebar a{ color: #FFFFFF;display: inline;font-size: 11px;font-weight: bold;text-decoration: none;}
 .sidebar-toggle{cursor: pointer; padding-right: 20px; padding-top: 19px; position: absolute; right: 0; z-index: 4;}
 .trecho-details{ width:800px;}
+
+.notification-box { top: 100px}
+.notification-box h3{height: 20px; background-color:#5C9DCF; color:#fff; padding:10px; font-weight:bold;}
+.notif-container {width: 100%;height: 100%; background-color:#FFF; padding-top: 5px; margin-bottom:10px}
+
+.tag-container { width: 100%;height: 100%; background-color:#F0F0F0; padding-top: 7px; margin-bottom:10px}
+.tag-container h4 { font-size:15px; font-weight:bold; color:#369}
+.tagbox{ margin: 20px; background-color:#FFF; box-shadow: 1px 2px 7px #BBBBBB inset; -webkit-box-shadow: 1px 2px 7px #BBBBBB inset; -moz-box-shadow: 1px 2px 7px #BBBBBB inset;}
+.tagbox form {padding-top:5px}
+.tagbox input[type="text"]{box-shadow: none !important; color:#aaa}
+.tag-align{ margin-left: 20px; }
 
 
 /* login */
@@ -110,11 +121,22 @@ input[type="button"], button{background-color: #336699; border: 0.5px solid #BBB
 .form-login tr {height: 45px;}
 
 /* register */
-.form-register {font-size:14px; color: #bbb; font-weight:bold; margin: 50px 20px 20px; display:none}
+.form-register {font-size:14px; color: #bbb; font-weight:bold; margin: 20px; display:none}
 .form-register a{ color:#fff; font-size: 11px}
 .form-register td.text {width: 260px; margin-left: 20px}
 .form-register td {width:135px}
 .form-register tr {height: 45px;}
+.form-register select { width:104%}
+
+/* perfil */
+.box-perfil {  width: 100%; margin: 0 auto; height: auto}
+.form-perfil { font-size:14px; margin: 20px 20px 20px;}
+.form-perfil label { color: #bbb; font-weight:bold;}
+.form-perfil input{ width: inherit}
+.form-perfil a{ color:#fff; font-size: 11px}
+.form-perfil td.text {width: 260px; margin-left: 20px}
+.form-perfil td {width:135px}
+.form-perfil tr {height: 45px;}
 
 .box-register {width: 970px; background-color:#F0F0F0; padding-top: 20px; padding-bottom: 20px}
 .box-top-register {width:970px; margin-bottom: 18px; padding: 5px 0}
@@ -128,7 +150,7 @@ input[type="button"], button{background-color: #336699; border: 0.5px solid #BBB
 
 /* lateral search */
 .formsearch { height:40px; margin: 10px;}
-.formsearch form{ margin-left:20px }
+.formsearch form{ margin-left:10px }
 .formsearch input.txtsearch {float:left; width: 85%; background:#FFF;height: 29px;}
 .formsearch .button-seach {cursor: pointer; background: none; height: 33px; width: 34px; border: none !important;}
 
@@ -156,7 +178,7 @@ scroll-div {background-color: #F0F0F0}
 .adv-search td { width: 135px;}
 .adv-search label.right { margin-left:25px}
 .adv-search td.text { width: 335px;}
-#tag-trecho {display:none}
+#tag-trecho {display:none; margin-top:20px}
 .box-creation-options { height:250px; margin: 45px auto 0; width: 800px; background-color: #FFF; padding: 5px;}
 .action-opt{ width:620px; height:100px; background-color: #fff; margin: 35px auto 0;}
 .action-opt ul{ list-style: none; color: #003366; font-weight:bold;}
@@ -180,8 +202,8 @@ ul.showcase a { text-decoration:none; margin:0 auto; display: block; height:160p
 ul.showcase a.new { background-image:url(../images/new_doc-mid.png); background-repeat:no-repeat; height:64px; width:64px; margin-top: 45px;}
 
 /* document */
-.box-main-doc{ margin: 20px 30px 30px 70px; background-color:#fff; }
-/*text-area editor*/.editor-container {height: 800px; width:750px; background-color:#FFF; padding-right:30px; margin-bottom:10px}
+.box-main-doc{ margin: 5px; background-color:#fff; }
+/*text-area editor*/.editor-container {height: 68%; width:920px; background-color:#FFF; padding-right:2px; padding-right: 2px; margin-bottom:10px}
 
 /* approve */
 ul.approve-list { list-style-type: none; margin: 0 0 10px; padding: 0;}
@@ -191,21 +213,36 @@ ul.approve-list li { background-color: #FFFFFF; margin: 10px 0; padding: 5px 30p
 ul.approve-list li .time{ margin: 0 20px 10px 0; height: 85px; float:left; color: #336699}
 
 /* task lists */
-.box-main-container { margin: 50px auto 0; background-color:#fff; width:970px; min-height: 500px; padding:20px 20px 0 20px}
-.box-main-container h3 { background-color:#bbb; margin: 10px auto 0; padding: 5px 10px; color: #336699; font-size: 20px; font-weight: bold; cursor: pointer;} 
-.tasks-container { background-color:#f0f0f0; min-height: 25px; margin:0 auto 30px;padding-bottom: 10px;}
+.box-main-container { margin: 50px auto 0; background-color:#fff; width:970px; padding:20px}
+.box-main-container h3 { background-color:#bbb; margin: 10px auto 0; padding: 5px 10px; color: #336699; font-size: 20px; font-weight: bold; cursor: pointer;}
+.align-task { margin: 50px; width:60%}
+.head-task { margin: 50px 50px -30px; width:60%; min-height:auto !important; padding: 10px 20px; background-color:#5C9DCF}
+.manager{ margin:50px auto -30px !important; width:970px !important}
+.head-task h2{ font-size:18px; font-weight:bold; color:#fff}
+.tasks-container { background-color:#f0f0f0; min-height: 25px; margin:0 auto 30px !important; padding-bottom: 0 0 10px !important; border:none !important}
+.tasks-container label{ color:#336699; margin-right:20px; font-size:16px; margin-left: 10px;}
 .task-list { overflow-y: scroll; max-height: 300px; position: relative; overflow-x: hidden}
 .task-list table { width: 100%; font-size:14px; color:#888888}
 .task-list th { padding-left: 10px; padding-right: 6px; color: #5C9DCF; font-weight: bold; font-size:14px}
 .task-list th.less { width:33px }
 .task-list tr { height:30px; border-bottom:1px solid #fff; }
-.task-list tbody tr:hover {background-color:#fff; color:#5C9DCF; cursor:pointer}
-.task-list td a{ display:block;}
+.task-list tbody tr:hover {background-color:#fff; color:#5C9DCF;}
+.task-list td a{ display:block; color: inherit;}
 .task-list td { padding-left: 10px; padding-right: 6px;}
-.task-list a.ico { width:26px; height:26px; margin:0 auto; text-indent:-99999px}
-.approve {background-image:url(../images/approve-ico.png);}
-.disapprove {background-image:url(../images/disapprove-ico.png);}
-
+.task-list td span.sign { width:26px; height:26px; margin-left:5px; margin-right:5px}
+.task-list td span.warning { background-image:url(../images/alert-ico.png)}
+.task-list td span.reject { background-image:url(../images/disapprove-ico.png)}
+.task-list td span.approved { background-image:url(../images/approve-ico.png)}
+.task-list a.showdetails, a.showdoc { background-image:url(../images/showdoc.png); width:26px; height:26px; margin:0 auto; text-indent:-99999px}
+.user-details{ width:500px;}
+.user-data { margin-top:3px; margin-bottom: 3px}
+.user-data label{ width: 30%; float:left; font-size:14px; font-weight:bold}
+.user-data input[type='text']{ width: 65% !important}
+.user-data textarea{ width: 65% !important; height:100px}
+.user-data select{ width: 52% !important}
+.user-container { margin-top:25px; margin-bottom:5px}
+#rejection{display:none;}
+#rejection a{ float: right; margin-right: 15px; height: 20px; color:#fff}
 /**/
 
 /** FOOTER **/
@@ -315,6 +352,29 @@ ul.approve-list li .time{ margin: 0 20px 10px 0; height: 85px; float:left; color
 .highlight-fancy-content { max-height:600px;overflow:auto; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; border-top: 1px solid #f0f0f0;}
 
 /* accordion */
-.ui-icon{ width:26px; height:26px; float:left; display:block; margin-right: 10px;}
-.ui-icon-triangle-1-s { background-image:url(../images/d-arrow.png)}
-.ui-icon-triangle-1-e { background-image:url(../images/r-arrow.png)}
+.ui-icon{ width:26px; height:26px; float:left; display:block; margin: 0 10px 0 0 !important;}
+.ui-icon-triangle-1-s { background-image:url(../images/d-arrow.png) !important}
+.ui-icon-triangle-1-e { background-image:url(../images/r-arrow.png) !important}
+
+.ui-helper-reset { line-height:inherit !important;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border:none; background-image:none !important}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none; background-image:none !important; background-color: #BBBBBB;}
+.ui-state-hover, .ui-state-focus, .ui-widget-header {background-image:none !important}
+.ui-accordion .ui-accordion-header .ui-icon { background-image:none}
+
+/* tag-it! */
+ul.tagit{overflow:auto;margin-left:inherit;margin-right:inherit;padding:1px 5px}
+ul.tagit li.tagit-choice{position:relative;line-height:inherit;padding:.2em 18px .2em .5em}
+ul.tagit li.tagit-new{padding:.25em 4px .25em 0; width: 213px;}
+ul.tagit li.tagit-choice a.tagit-label{cursor:pointer;text-decoration:none}
+ul.tagit li.tagit-choice .tagit-close{cursor:pointer;position:absolute;right:.1em;top:50%;margin-top:-8px}
+ul.tagit li.tagit-choice .tagit-close .text-icon{display:none}
+ul.tagit input[type=text]{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;border:none;width:inherit;background-color:inherit;outline:none;margin:0;padding:0}
+ul.tagit li,ul.tagit li.tagit-choice input{display:block;float:left;margin:2px 5px 2px 0}
+
+ul.tagit li.tagit-choice{-moz-border-radius:6px;border-radius:6px;-webkit-border-radius:6px;border:1px solid #CAD8F3;background:none;background-color:#f0f0f0;color:#555;font-weight:400}
+ul.tagit li.tagit-choice .tagit-close{right:.4em}
+ul.tagit li.tagit-choice .ui-icon{display:none}
+ul.tagit li.tagit-choice .tagit-close .text-icon{display:inline;font-family:arial, sans-serif;font-size:16px;line-height:16px;color:#777}
+ul.tagit li.tagit-choice:hover,ul.tagit li.tagit-choice.remove{background-color:#bbcef1;border-color:#6d95e0}
+ul.tagit li.tagit-choice a.tagLabel:hover,ul.tagit li.tagit-choice a.tagit-close .text-icon:hover{color:#222}

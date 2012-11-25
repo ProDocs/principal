@@ -71,7 +71,7 @@ function logout(){
 
 /* accordion */
 $(function() {
-	$("#accordion").accordion({autoHeight: false, collapsible: true});
+	$("#accordion, #accordion_2").accordion({autoHeight: false, collapsible: true, active: false});
 });
 
 /* dialog */
@@ -103,7 +103,8 @@ $(document).ready(function() {
 
 /* fancybox - show excerpts */
 $(document).ready(function() {
-	$(".active_details").fancybox({
+	$(".active_details, .showdetails").fancybox({
+		'titleShow'			: false,
 		'titlePosition'		: 'inside',
 		'transitionIn'		: 'none',
 		'transitionOut'		: 'none',
@@ -125,6 +126,19 @@ $(document).ready(function() {
 	});
 });
 
+/* fancybox - show perfil */
+$(document).ready(function() {
+	$("#show-perfil").fancybox({
+		'titleShow'			: false,
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'overlayColor'		: '#000',
+		'overlayOpacity'	: '0.6',
+		'type'				: 'iframe',
+		'height'			: 400
+	});
+});
+
 $(document).ready(function() {
 	$( ".resizable" ).resizable();
 });
@@ -137,11 +151,17 @@ $(function(){
         $('.resultsearch').css({'height': (($(window).height())-266)+'px'});
 	});
 });
+$(function(){
+    $('.notif-container').css({'height': (($(window).height())-216)+'px'});
+   	$(window).resize(function(){
+        $('.notif-container').css({'height': (($(window).height())-216)+'px'});
+	});
+});
 
 /* scroll */
 (function($){
 	$(window).load(function(){
-		$(".resultsearch").mCustomScrollbar({scrollInertia:0, mouseWheel:20, advanced:{updateOnContentResize:true, updateOnBrowserResize:true}}, "update");
+		$(".resultsearch, .notif-container").mCustomScrollbar({scrollInertia:0, mouseWheel:20, advanced:{updateOnContentResize:true, updateOnBrowserResize:true}}, "update");
 	});
 })(jQuery);
 
@@ -199,3 +219,22 @@ $(function() {
 		});
 	}
 });
+
+
+/* allow edition */
+function allowEditionManager(){
+	$('.user-container').find('input:text').removeAttr('disabled');
+}
+
+function sendRejectionReason(){
+	$('#rejection').toggle();
+}
+
+/* Validation */
+function validateForm(){
+	var x=document.forms["myForm"]["fname"].value;
+	if (x==null || x==""){
+	  alert("First name must be filled out");
+	  return false;
+	}
+}
