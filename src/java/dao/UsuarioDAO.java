@@ -84,6 +84,7 @@ public class UsuarioDAO implements Dao {
     
     
     /******************************Metodos Customizados*********************************/
+
     
     public int cadastrarUsuario(Usuario usuario){
     
@@ -103,6 +104,7 @@ public class UsuarioDAO implements Dao {
         }
         return 0;
     }
+    
     
 
     public int loginExistente(String login)throws SQLException{
@@ -159,52 +161,6 @@ public class UsuarioDAO implements Dao {
         return null;
     }
 
-   /* public void update(Object object) throws SQLException {
-        Usuario user = (Usuario) object;
-
-        String sql = "update usuario set "
-                + "login=?,senha=?, nome=?, email=?, sobrenome=?, endereco=?, cidade=?, estado=?, tel=?, tipo_user=?, status=? "
-                + "where cod_user=?";
-
-        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
-        stm.setString(1, user.getLogin());
-        stm.setString(2, user.getSenha());
-        stm.setString(3, user.getNome());
-        stm.setString(4, user.getEmail());
-        stm.setString(5, user.getSexo());
-        stm.setString(6, user.getEndereco());
-        stm.setString(7, user.getCidade());
-        stm.setString(8, user.getEstado());
-        stm.setString(9, user.getTel());
-        stm.setInt(10, user.getTipo_user());
-        stm.setInt(11, user.getStatus());
-        stm.setInt(12, user.getCod_user());
-
-        stm.executeUpdate();
-
-        System.out.println("Atualizacao OK");
-    } */
-
-     /*   public void updateUser(Usuario userLogado, Usuario userEdit) throws SQLException {
-
-
-        String sql = "update usuario set "
-                + "senha=?, email=?, endereco=?, tel=?"
-                + "where cod_user=?";
-
-        PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
-        stm.setString(1, userEdit.getSenha());
-        stm.setString(2, userEdit.getEmail());
-        stm.setString(3, userEdit.getEndereco());
-        stm.setString(4, userEdit.getTel());
-        stm.setInt(5, userLogado.getCod_user());
-
-        stm.executeUpdate();
-
-            System.out.println(stm.toString());
-
-        System.out.println("Atualizacao OK - updateUser");
-    }*/
 
     @Override
     public void update(Object object) throws SQLException {

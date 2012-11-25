@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
+
 
         <div class="box-main-doc">
         		<!-- Iteração -->
@@ -20,4 +20,3 @@
 			    </div> 
         </div>
 
-<%@include file="footer.jsp" %>

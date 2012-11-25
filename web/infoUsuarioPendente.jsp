@@ -7,10 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<!-- Area do Topo -->
-<%@include file="header.jsp"%>
+<%@ taglib prefix="sj" uri="/struts2-jquery-tags" %>
 
         <h1>Seu cadastro ainda não foi aprovado por um dos gestores do grupo</h1>
+        
 
-<!-- Rodape-->
-<%@include file="footer.jsp"%>
+

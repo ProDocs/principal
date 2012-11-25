@@ -18,6 +18,17 @@ public class TesteDivAction extends ActionSupport{
     
     private String tipoMensagem;
     private String mensagem;
+    private String[] tags;
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+    
+    
 
     public String getTipoMensagem() {
         return tipoMensagem;
@@ -43,6 +54,7 @@ public class TesteDivAction extends ActionSupport{
         
         if(tipoMensagem!= null && !tipoMensagem.isEmpty()){
         if(tipoMensagem.equalsIgnoreCase("1")){
+            System.out.println("No if");
         
             mensagem = "Mensagem tipo 1 carregada com sucesso!";
             return SUCCESS;
@@ -56,12 +68,23 @@ public class TesteDivAction extends ActionSupport{
         }
         
         else{
-        
+            System.out.println("No else");
+            for(String imprime : tags){
+                System.out.println("Recebeu parametros: "+imprime);
+            }
+            
              return SUCCESS;
+             
         
         }
         
         }
+        
+         System.out.println("Em nenhum");
+        
+         for(String imprime : tags){
+                System.out.println("Recebeu parametros: "+imprime);
+            }
         
         return SUCCESS;
     }

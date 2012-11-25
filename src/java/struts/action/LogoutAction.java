@@ -7,18 +7,19 @@ package struts.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
+import tipo.TipoSessionObjects;
 
 /**
  *
  * @author discover
  */
 public class LogoutAction extends ActionSupport{
-    public static final String USER_LOGADO = "USER_LOGADO";
     
     @Override
     public String execute() throws Exception {
         Map<String, Object> session = ActionContext.getContext().getSession();
-        session.remove(USER_LOGADO);
+        session.remove(TipoSessionObjects.USER_LOGADO.getDescricao());
+        session.remove(TipoSessionObjects.SELECTED_GROUP.getDescricao());
         
        return "success";
     }

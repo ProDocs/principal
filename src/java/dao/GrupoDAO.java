@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package dao;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -109,7 +108,7 @@ public class GrupoDAO implements Dao{
             
             ResultSet rs;
             String sql;
-            sql = ("Select * from grupo");
+            sql = ("Select * from grupo where idGrupo != 1");
             PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
             
             rs = stm.executeQuery();
@@ -126,10 +125,15 @@ public class GrupoDAO implements Dao{
 
             }
             
-        }catch(Exception e){}
+        }catch(Exception e){
+        
+            return null;
+        
+        }
         
         return grupos;
     }
+
     
     public List<PerfilUsuarioGrupoDTO> listarGrupos(FiltroGruposUsuarioDTO idUsuario) throws SQLException{
     

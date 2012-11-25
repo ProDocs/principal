@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
 
 <div class="wrapper">
    
@@ -43,5 +42,3 @@
         </div>
    
 </div>
-
-<%@include file="footer.jsp" %>
